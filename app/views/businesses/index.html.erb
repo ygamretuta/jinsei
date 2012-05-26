@@ -1,0 +1,9 @@
+<% if @businesses.count > 0 %>
+    <ul>
+      <% @businesses.each do |b| %>
+         <li><%= b.name %></li>
+      <% end %>
+    </ul>
+<% else %>
+    <p>There are no businesses listed.</p>
+<% end %>

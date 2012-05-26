@@ -1,0 +1,9 @@
+<%= simple_form_for @business, :html => {:class => "form-horizontal"} do |f| %>
+
+    <legend>Business Form</legend>
+    <%= f.input :name, :input_html => {:class => "span6"}, :hint => "Enter Business Name" %>
+
+    <div class="well form-actions">
+        <%= f.button :submit, :class => "btn-primary" %>
+    </div>
+<% end %>
