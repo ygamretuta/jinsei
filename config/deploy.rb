@@ -1,13 +1,25 @@
 set :application, "jinsei"
-set :repository,  "set your repository location here"
+set :repository,  "git@github.com:ygamretuta/jinsei.git"
 
-set :scm, :subversion
+set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+role :web, "web197.webfaction.com"                          # Your HTTP server, Apache/etc
+role :app, "web197.webfaction.com"                          # This may be the same as your `Web` server
+role :db,  "web197.webfaction.com", :primary => true # This is where Rails migrations will run
+
+set :deploy_to, "/home/ygamretuta/webapps/jinsei"
+set :user, "ygamretuta"
+set :scm_username, "ygamretuta"
+set :use_sudo, false
+default_run_options[:pty] = true
+
+namespace :deploy do
+  desc "Restart nginx"
+  task :restart do
+    run "#{deploy_to}/bin/restart"
+  end
+end
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
