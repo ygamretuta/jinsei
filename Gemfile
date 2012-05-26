@@ -6,7 +6,6 @@ gem 'capistrano'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'jquery-rails'
-gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -19,6 +18,7 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'spork', '~> 0.9'
