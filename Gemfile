@@ -18,6 +18,7 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'ruby-debug19'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'spork', '~> 0.9'
