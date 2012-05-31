@@ -17,16 +17,3 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.0.3'
   gem 'coffee-rails', '~> 3.2.1'
 end
-
-group :test, :development do
-  gem 'ruby-debug19'
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'spork', '~> 0.9'
-  gem 'rb-fsevent'
-  gem 'growl'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'factory_girl_rails'
-end
