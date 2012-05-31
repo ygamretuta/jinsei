@@ -24,3 +24,5 @@ config/deploy.rb
 .idea/
 log/
 tmp/
+uploads/
+Capfile
