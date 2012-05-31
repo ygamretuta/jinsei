@@ -6,7 +6,6 @@ gem 'capistrano'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'jquery-rails'
-gem 'therubyracer'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
