@@ -6,8 +6,7 @@ gem 'capistrano'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'jquery-rails'
-gem 'rmagick'
-gem 'friendly_id'
+gem 'mini_magick'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
