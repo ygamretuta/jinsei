@@ -11,7 +11,7 @@ class BusinessesController < ApplicationController
   def create
     @business = Business.new(params[:business])
     @business.save
-    respond_with(@business)
+    respond_with(@business, :location => business_name_url(@business))
   end
 
   def show
