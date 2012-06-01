@@ -15,7 +15,12 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = Business.find(params[:id])
+    if params.include?(:name)
+      name = params[:name].to_s.titleize
+      @business = Business.find_by_name(name)
+    else
+      @business = Business.find(params[:id])
+    end
     respond_with(@business)
   end
 

@@ -26,3 +26,4 @@ log/
 tmp/
 uploads/
 Capfile
+.sass-cache/
