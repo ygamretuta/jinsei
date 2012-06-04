@@ -7,6 +7,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'jquery-rails'
 gem 'mini_magick'
+gem 'devise'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -20,7 +21,6 @@ end
 
 group :test, :development do
   gem 'ruby-debug19'
-  gem 'rspec'
   gem 'rspec-rails'
   gem 'spork', '~> 0.9'
   gem 'rb-fsevent'
@@ -28,5 +28,5 @@ group :test, :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', :require => false
 end

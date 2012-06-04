@@ -1,1 +1,11 @@
 <h1><%= @business.name %></h1>
+
+<p><%= @business.description %></p>
+
+<ul class="list_business_actions">
+  <li><%= link_to "Edit", edit_business_path(@business) %></li>
+  <li>
+    <%= link_to "Delete", business_path(@business),
+      :method => :delete, :confirm => "Are you sure" %>
+  </li>
+</ul>

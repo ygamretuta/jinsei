@@ -1,7 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :business do
-    name "MyString"
+    name "Atab Pharmacy"
+    description "Pharmacy and public health clinic located in Marcos Highway Baguio City"
   end
 end

@@ -1,40 +1,25 @@
 require 'spec_helper'
 
 describe BusinessesController do
+  render_views
 
-  describe "GET 'new'" do
-    it "returns http success" do
-      get 'new'
-      response.should be_success
+  [:show, :edit].each do |action|
+    context action do
+      business = FactoryGirl.create(:business)
+      it "should show business" do
+        get action, :id => business
+        response.should be_success
+      end
+
+      it "should 404 on int id does not exist" do
+        get action, :id => 999
+        response.status.should be(404)
+      end
+
+      it "should 404 on string id does not exist" do
+        get action, :id => "rar"
+        response.status.should be(404)
+      end
     end
   end
-
-  describe "GET 'create'" do
-    it "returns http success" do
-      get 'create'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'edit'" do
-    it "returns http success" do
-      get 'edit'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'update'" do
-    it "returns http success" do
-      get 'update'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'destroy'" do
-    it "returns http success" do
-      get 'destroy'
-      response.should be_success
-    end
-  end
-
 end

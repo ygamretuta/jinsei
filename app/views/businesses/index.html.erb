@@ -8,8 +8,12 @@
             <div class="photo_index_business"><%= image_tag(b.photo.medium.url)%></div>
            <% end %>
 
+           <p class="p_description_business">
+             <%= truncate(b.description, :length => 208) %>
+           </p>
+
            <div class="actions_index_business">
-             <%= link_to "View Details >>", business_path(b), {:class => 'btn btn-primary'} %>
+             <%= link_to "View Details >>", business_name_path(b), {:class => 'btn btn-primary'} %>
            </div>
          </li>
       <% end %>

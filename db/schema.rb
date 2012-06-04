@@ -19,9 +19,6 @@ ActiveRecord::Schema.define(:version => 20120601083928) do
     t.datetime "updated_at",  :null => false
     t.string   "photo"
     t.text     "description"
-    t.string   "slug"
   end
-
-  add_index "businesses", ["slug"], :name => "index_businesses_on_slug", :unique => true
 
 end
