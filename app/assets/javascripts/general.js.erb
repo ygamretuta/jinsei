@@ -1,0 +1,25 @@
+$(function(){
+
+    $.ajaxSetup({
+        'beforeSend': function(xhr) {
+            xhr.setRequestHeader("Accept",'');
+            xhr.setRequestHeader("Accept", "text/javascript")
+        }
+    });
+
+    $('#tabs_business_show').click(function(e){
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    $('a[data-toggle="tab"]').on('shown', function(e){
+        var url = $(this).data('url');
+        var segment = $(this).data('segment');
+
+        $('div.active').html('<img src="<%= asset_path('preloader.gif') %>" />');
+
+        $('div.active').load(url, function(){
+            $(this).attr('id', segment);
+        });
+    });
+});

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120601083928) do
+ActiveRecord::Schema.define(:version => 20120613105833) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,35 @@ ActiveRecord::Schema.define(:version => 20120601083928) do
     t.datetime "updated_at",  :null => false
     t.string   "photo"
     t.text     "description"
+    t.string   "slug"
   end
+
+  add_index "businesses", ["slug"], :name => "index_businesses_on_slug", :unique => true
+
+  create_table "catalogs", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "business_id"
+    t.string   "slug"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "catalogs", ["business_id"], :name => "index_catalogs_on_business_id"
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "business_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "slug"
+    t.string   "photo"
+    t.integer  "catalog_id"
+  end
+
+  add_index "products", ["business_id"], :name => "index_products_on_business_id"
+  add_index "products", ["catalog_id"], :name => "index_products_on_catalog_id"
+  add_index "products", ["slug"], :name => "index_products_on_slug", :unique => true
 
 end

@@ -1,0 +1,10 @@
+<ul class="list_products_catalog">
+    <% @products.each do |p| %>
+    <li>
+      <div class="catalog_thumb"></div>
+      <ul>
+        <li class="list_catalog_name"><%= link_to p.name, product_name_path(@business.id, p) %></li>
+      </ul>
+    </li>
+    <% end %>
+  </ul>

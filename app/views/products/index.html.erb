@@ -1,0 +1,16 @@
+<h1>Products for <%= @business.name %></h1>
+
+<div class="tabbable tabs-left">
+  <div class="tab-content">
+      <ul class="list_catalog">
+        <% @products.each do |p| %>
+        <li>
+          <div class="catalog_thumb"></div>
+          <ul>
+            <li class="list_catalog_name"><%= link_to p.name, product_name_path(@business.id, p) %></li>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+  </div>
+</div>

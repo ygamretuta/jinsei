@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @product.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @product.description %>
+</p>
+
+<% unless @product.photo.blank? %>
+<p>
+  <%= image_tag(@product.photo.medium.url) %>
+</p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_business_product_path(@business,@product) %>

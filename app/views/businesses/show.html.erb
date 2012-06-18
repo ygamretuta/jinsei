@@ -2,10 +2,37 @@
 
 <p><%= @business.description %></p>
 
-<ul class="list_business_actions">
-  <li><%= link_to "Edit", edit_business_path(@business) %></li>
-  <li>
-    <%= link_to "Delete", business_path(@business),
-      :method => :delete, :confirm => "Are you sure" %>
-  </li>
-</ul>
+<div class="subnav">
+    <ul class="list_business_actions nav nav-pills">
+      <li><%= link_to "Edit", edit_business_path(@business) %></li>
+      <li>
+        <%= link_to "Delete", business_path(@business),
+          :method => :delete, :confirm => "Are you sure" %>
+      </li>
+
+      <li>
+        <%= link_to "Add Product", new_business_product_path(@business) %>
+      </li>
+
+      <li>
+        <%= link_to "Add Catalog", new_business_catalog_path(@business) %>
+      </li>
+    </ul>
+</div>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="tabs_business_show">
+    <li class="active"><%= link_to "All Products", "#all", {"data-toggle"=>"tab", "data-url"=> business_products_path(@business), "data-segment" => 'all'} %></li>
+    <% @catalogs.each do |c| %>
+    <li>
+      <%= link_to c.name, "#"+c.slug.to_s, {"data-toggle" => "tab", "data-url"=> business_catalog_products_path(@business,c), "data-segment" => c.slug}%>
+    </li>
+    <% end %>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="all">
+      <%= render_cell :products, :index, {:business=>@business,:products=>@products} %>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,8 @@ gem 'carrierwave'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'devise'
+gem 'friendly_id'
+gem 'cells'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -15,48 +15,25 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    if params.include?(:name)
-      name = params[:name].to_s.titleize
-      @business = Business.find_by_name!(name)
-    elsif params[:id].to_i == 0
-      name = params[:id].to_s.titleize
-      @business = Business.find_by_name!(name)
-    else
-      @business = Business.find(params[:id])
-    end
-
+    @business = Business.find(params[:id])
+    @products = @business.products.all
+    @catalogs = @business.catalogs.all
     respond_with(@business)
   end
 
   def edit
-    if params[:id].to_i == 0
-      name = params[:id].to_s.titleize
-      @business = Business.find_by_name!(name)
-    else
-      @business = Business.find(params[:id])
-    end
+    @business = Business.find(params[:id])
     respond_with(@business)
   end
 
   def update
-    if params[:id].to_i == 0
-      name = params[:id].to_s.titleize
-      @business = Business.find_by_name!(name)
-    else
-      @business = Business.find(params[:id])
-    end
+    @business = Business.find(params[:id])
     flash[:notice] = t("flash.actions.update.notice", {:resource_name => "Business"}) if @business.update_attributes(params[:business])
     respond_with(@business)
   end
 
   def destroy
-    if params[:id].to_i == 0
-      name = params[:id].to_s.titleize
-      @business = Business.find_by_name!(name)
-    else
-      @business = Business.find(params[:id])
-    end
-
+    @business = Business.find(params[:id])
     @business.destroy
     redirect_to root_path
   end
