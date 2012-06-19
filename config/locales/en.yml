@@ -9,3 +9,21 @@ en:
         notice: "%{resource_name} was successfully created"
       update:
         notice: "%{resource_name} was successfully updated"
+
+  activerecord:
+    errors:
+      models:
+        product:
+          attributes:
+            name:
+              taken: "Product name is already taken for this business"
+      messages:
+        taken: "is already taken"
+    models:
+      business: "Business"
+    attributes:
+      business:
+        name: "Business Name"
+
+  app:
+    product_list_empty: "There are no products for this catalog."

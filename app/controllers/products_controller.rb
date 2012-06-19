@@ -16,17 +16,20 @@ class ProductsController < ApplicationController
   def show
     @business = Business.find(params[:business_id])
     @product = Product.find(params[:id])
+    @catalog = @product.catalog
     respond_with(@product, :location => product_name_url(@business, @product))
   end
 
   def new
     @business = Business.find(params[:business_id])
+    @catalogs = @business.catalogs.all
     @product = @business.products.build
     respond_with(@product)
   end
 
   def edit
     @business = Business.find(params[:business_id])
+    @catalogs = @business.catalogs.all
     @product = Product.find(params[:id])
   end
 

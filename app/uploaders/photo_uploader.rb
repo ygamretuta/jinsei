@@ -28,7 +28,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def cache_dir
@@ -40,7 +40,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+    asset_path([version_name, "default.gif"].compact.join('_'))
   end
 
   # set max image size
@@ -52,10 +52,11 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :medium do
-    process :resize_to_fill => [300,250]
+
+    process :resize_to_fill => [115,115]
   end
 
   def filename
-    @name ||= "#{Time.now.to_i}_#{super}.#{file.extension}" if original_filename.present? and super.present?
+    @name ||= "#{Time.now.to_i}_#{super}" if original_filename.present? and super.present?
   end
 end

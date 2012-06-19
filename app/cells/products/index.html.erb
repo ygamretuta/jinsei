@@ -1,10 +1,27 @@
+<% if @products.count > 0 %>
 <ul class="list_products_catalog">
     <% @products.each do |p| %>
-    <li>
-      <div class="catalog_thumb"></div>
-      <ul>
-        <li class="list_catalog_name"><%= link_to p.name, product_name_path(@business.id, p) %></li>
-      </ul>
-    </li>
+        <li>
+          <div class="catalog_thumb"></div>
+          <ul>
+            <li class="list_catalog_name row">
+              <div class="container_image_product span2">
+                <% if p.photo.blank? %>
+                    <a class="thumbnail">
+                      <%= image_tag p.photo.medium.url %>
+                    </a>
+                <% else %>
+                    <%= image_tag p.photo.medium.url %>
+                <% end %>
+              </div>
+              <ul class="list_products_details span4">
+                <%= link_to p.name, product_name_path(@business.id, p) %>
+              </ul>
+            </li>
+          </ul>
+        </li>
     <% end %>
-  </ul>
+</ul>
+<% else %>
+    <p class="alert alert-info"><%= t "app.product_list_empty"%></p>
+<% end %>

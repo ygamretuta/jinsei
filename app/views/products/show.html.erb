@@ -1,3 +1,24 @@
+<div class="subnav">
+    <ul class="list_product_actions nav nav-pills">
+      <li><%= link_to "Edit", edit_business_product_path(@business, @product) %></li>
+      <li>
+        <%= link_to "Delete", business_product_path(@business, @product),
+          :method => :delete, :confirm => "Are you sure" %>
+      </li>
+
+      <li>
+        <%= link_to "Back To " + @business.name, business_path(@business) %>
+      </li>
+
+      <% unless @catalog.nil? %>
+      <li>
+        <%= link_to "Items In " + @catalog.name, business_catalog_path(@business, @catalog) %>
+      </li>
+      <% end %>
+    </ul>
+</div>
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
