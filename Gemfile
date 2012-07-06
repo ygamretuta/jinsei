@@ -10,6 +10,11 @@ gem 'mini_magick'
 gem 'devise'
 gem 'friendly_id'
 gem 'cells'
+gem 'cancan'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'oauth2'
+gem 'thin'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -1,6 +1,16 @@
 FactoryGirl.define do
+  sequence :name do |n|
+    "product#{n}"
+  end
+
+  sequence :description do |n|
+    "This is description #{n}"
+  end
+
   factory :product do
-    name "MG 1/100 Gundam Unicorn OVA Version"
-    description "Master Grade OVA version of the Gundam Unicorn in 1/100 scale"
+    name
+    description
+    business
+    catalog
   end
 end

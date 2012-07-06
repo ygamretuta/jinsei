@@ -6,7 +6,16 @@ class Business < ActiveRecord::Base
 
   has_many :catalogs, :dependent => :destroy
   has_many :products, :dependent => :destroy
+  belongs_to :user
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  def is_owned_by?(user)
+    self.user == user
+  end
+
+  def profile
+    @user = current_user
+  end
 end

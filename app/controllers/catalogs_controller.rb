@@ -1,4 +1,6 @@
 class CatalogsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @business = Business.find(params[:business_id])
     @catalogs = @business.catalogs.all
@@ -8,6 +10,7 @@ class CatalogsController < ApplicationController
   def show
     @business = Business.find(params[:business_id])
     @catalog = @business.catalogs.find(params[:id])
+    @products = @catalog.products
     respond_with(@business, @catalog)
   end
 

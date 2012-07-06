@@ -1,10 +1,14 @@
 require 'spec_helper'
 
 describe "Catalogs" do
+  before do
+    @business = FactoryGirl.create(:business)
+  end
+
   describe "GET /catalogs" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get catalogs_path
+      get business_catalogs_path(@business)
       response.status.should be(200)
     end
   end

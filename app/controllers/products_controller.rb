@@ -1,14 +1,18 @@
 class ProductsController < ApplicationController
   layout proc {|controller| controller.request.xhr? ? false : "application"}
+  load_and_authorize_resource
+
+  before_filter :get_embedded_business
+  before_filter :require_owner, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
     @business = Business.find_by_slug(params[:business_id])
     if params.has_key?(:catalog_id)
       @catalog = Catalog.find(params[:catalog_id])
-      @products = @catalog.products.all
+      @products = @catalog.products
       respond_with(@business, @catalog, @products)
     else
-      @products = @business.products.all
+      @products = @business.products
       respond_with(@business, @products)
     end
   end
