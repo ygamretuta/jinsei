@@ -23,6 +23,14 @@
                 <li>
                    <%= link_to 'Logout', logout_path, :method => :delete %>
                 </li>
+
+                <li>
+                  <%= link_to 'Register A Business', new_business_path %>
+                </li>
+
+                <li>
+                  <%= link_to 'Manage Businesses', user_businesses_path %>
+                </li>
             <% else %>
                 <li>
                   <%= link_to 'Sign In', login_path %>

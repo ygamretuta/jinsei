@@ -7,7 +7,7 @@ class Ability
     if user.role == 'admin'
       can :manage, :all
     elsif user.role == 'user'
-      can :read, :all
+      can :manage, [Business, Product, Catalog, User]
     else
       can :read, :all
     end

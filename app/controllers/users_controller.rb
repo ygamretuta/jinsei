@@ -6,4 +6,13 @@ class UsersController < ApplicationController
     @user = current_user
     respond_with(@user)
   end
+
+  def businesses
+    @user = current_user
+    @businesses = @user.businesses
+
+    respond_to do |format|
+      format.html
+    end
+  end
 end

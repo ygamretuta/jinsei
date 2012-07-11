@@ -1,5 +1,6 @@
 class Business < ActiveRecord::Base
   validates_presence_of :name
+  belongs_to :user
 
   mount_uploader :photo, PhotoUploader
   attr_accessible :name, :description, :photo, :remove_photo

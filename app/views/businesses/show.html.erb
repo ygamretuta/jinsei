@@ -2,6 +2,7 @@
 
 <p><%= @business.description %></p>
 
+<% if @is_business_owner %>
 <div class="subnav">
     <ul class="list_business_actions nav nav-pills">
       <li><%= link_to "Edit", edit_business_path(@business) %></li>
@@ -23,14 +24,17 @@
       </li>
     </ul>
 </div>
+<% end %>
 
 <div class="tabbable">
   <ul class="nav nav-tabs" id="tabs_business_show">
     <li class="active"><%= link_to "All Products", "#all", {"data-toggle"=>"tab", "data-url"=> business_products_path(@business), "data-segment" => 'all'} %></li>
-    <% @catalogs.each do |c| %>
-    <li>
-      <%= link_to c.name, "#"+c.slug.to_s, {"data-toggle" => "tab", "data-url"=> business_catalog_products_path(@business,c), "data-segment" => c.slug}%>
-    </li>
+    <% if @catalogs %>
+        <% @catalogs.each do |c| %>
+        <li>
+          <%= link_to c.name, "#"+c.slug.to_s, {"data-toggle" => "tab", "data-url"=> business_catalog_products_path(@business,c), "data-segment" => c.slug}%>
+        </li>
+        <% end %>
     <% end %>
   </ul>
 

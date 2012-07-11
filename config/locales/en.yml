@@ -9,6 +9,8 @@ en:
         notice: "%{resource_name} was successfully created"
       update:
         notice: "%{resource_name} was successfully updated"
+      destroy:
+        notice: "%{resource_name} was successfully deleted"
 
   activerecord:
     errors:

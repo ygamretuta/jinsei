@@ -25,6 +25,16 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def is_business_owner
+      object = instance_variable_get("@business")
+
+      if object and current_user
+        @is_business_owned =  object.is_owned_by?(current_user)
+      else
+        @is_business_owned = false
+      end
+    end
+
     def get_embedded_business
       @business = Business.find(params[:business_id])
     end

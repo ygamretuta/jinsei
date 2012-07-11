@@ -3,10 +3,13 @@ class BusinessesController < ApplicationController
   before_filter :authenticate_user!, :except=>[:show,:index]
   before_filter :get_business, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
+
+  # initialize owner variable
+  before_filter :is_business_owner
   load_and_authorize_resource
 
   def index
-    respond_with(@businesses=Business.all)
+    respond_with(@businesses=Business.where(:approved => true).all)
   end
 
   def new
@@ -14,15 +17,20 @@ class BusinessesController < ApplicationController
   end
 
   def create
-    @business = Business.new(params[:business])
+    @user = current_user
+    @business = @user.businesses.create(params[:business])
     flash[:notice] = t("flash.actions.create.notice", {:resource_name => "Business"}) if @business.save
-    respond_with(@business, :location => business_name_url(@business))
+    redirect_to user_businesses_path
   end
 
   def show
-    @products = @business.products.all
-    @catalogs = @business.catalogs.all
-    respond_with(@business)
+    if @business.approved?
+      @products = @business.products.all
+      @catalogs = @business.catalogs.all
+      respond_with(@business)
+    else
+      render :text=>'Not Found', :status => 404
+    end
   end
 
   def edit
@@ -31,12 +39,16 @@ class BusinessesController < ApplicationController
 
   def update
     flash[:notice] = t("flash.actions.update.notice", {:resource_name => "Business"}) if @business.update_attributes(params[:business])
-    respond_with(@business)
+    redirect_to user_businesses_path
   end
 
   def destroy
     @business = Business.find(params[:id])
-    @business.destroy
+
+    if @business
+      @business.destroy
+    end
+
     redirect_to root_path
   end
 

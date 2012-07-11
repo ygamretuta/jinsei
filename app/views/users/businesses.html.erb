@@ -1,0 +1,18 @@
+<ul class="list-business">
+    <% @businesses.each do |b| %>
+        <li class="row">
+          <div class="span2">
+            <%= image_tag b.photo.medium.url %>
+          </div>
+
+          <div class="pull-left">
+              <%= b.name %>
+              <ul class="list-user-businesses list-horizontal">
+                <li>Status: <%= b.approved ? 'Approved':'Not Approved' %></li> |
+                <li><%= link_to 'Edit', edit_business_path(b) %></li> |
+                <li><%= link_to 'Delete', business_path(b), :method=>:delete %></li>
+              </ul>
+          </div>
+        </li>
+    <% end %>
+</ul>

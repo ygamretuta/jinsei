@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703055729) do
+ActiveRecord::Schema.define(:version => 20120711100631) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120703055729) do
     t.text     "description"
     t.string   "slug"
     t.integer  "user_id"
+    t.boolean  "approved"
   end
 
   add_index "businesses", ["slug"], :name => "index_businesses_on_slug", :unique => true
