@@ -1,8 +1,11 @@
 class Product < ActiveRecord::Base
   belongs_to :business
   belongs_to :catalog
-  attr_accessible :description, :name, :photo, :catalog_id, :remove_photo
+  belongs_to :category
+
+  attr_accessible :description, :name, :photo, :catalog_id, :remove_photo, :in_stock, :category_id, :price
   validates_presence_of :name
+  validates_presence_of :category
 
   before_create :unique_to_business
 

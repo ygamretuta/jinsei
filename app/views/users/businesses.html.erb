@@ -6,11 +6,17 @@
           </div>
 
           <div class="pull-left">
-              <%= b.name %>
+              <% if b.approved? %>
+                <%= link_to b.name, business_name_path(b) %>
+              <% else %>
+                <%= b.name %>
+              <% end %>
+
               <ul class="list-user-businesses list-horizontal">
                 <li>Status: <%= b.approved ? 'Approved':'Not Approved' %></li> |
                 <li><%= link_to 'Edit', edit_business_path(b) %></li> |
-                <li><%= link_to 'Delete', business_path(b), :method=>:delete %></li>
+                <li><%= link_to 'Delete', business_path(b), :method=>:delete,
+                                :confirm => 'Are You Sure?' %></li>
               </ul>
           </div>
         </li>

@@ -2,28 +2,28 @@
 
 <p><%= @business.description %></p>
 
-<% if @is_business_owner %>
-<div class="subnav">
-    <ul class="list_business_actions nav nav-pills">
-      <li><%= link_to "Edit", edit_business_path(@business) %></li>
-      <li>
-        <%= link_to "Delete", business_path(@business),
-          :method => :delete, :confirm => "Are you sure" %>
-      </li>
+<% if current_user and @business.is_owned_by?(current_user) %>
+    <div class="subnav">
+        <ul class="list_business_actions nav nav-pills">
+          <li><%= link_to "Edit", edit_business_path(@business) %></li>
+          <li>
+            <%= link_to "Delete", business_path(@business),
+              :method => :delete, :confirm => "Are you sure" %>
+          </li>
 
-      <li>
-        <%= link_to "Add Product", new_business_product_path(@business) %>
-      </li>
+          <li>
+            <%= link_to "Add Product", new_business_product_path(@business) %>
+          </li>
 
-      <li>
-        <%= link_to "Add Catalog", new_business_catalog_path(@business) %>
-      </li>
+          <li>
+            <%= link_to "Add Catalog", new_business_catalog_path(@business) %>
+          </li>
 
-      <li>
-        <%= link_to "All Catalogs", business_catalogs_path(@business) %>
-      </li>
-    </ul>
-</div>
+          <li>
+            <%= link_to "All Catalogs", business_catalogs_path(@business) %>
+          </li>
+        </ul>
+    </div>
 <% end %>
 
 <div class="tabbable">

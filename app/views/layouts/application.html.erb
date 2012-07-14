@@ -4,6 +4,7 @@
   <title>Jinsei</title>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
+  <%= ajaxful_rating_style %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -20,22 +21,26 @@
                   <%= link_to 'Profile', profile_path %>
                 </li>
 
-                <li>
-                   <%= link_to 'Logout', logout_path, :method => :delete %>
-                </li>
-
+                <li class="divider-vertical"></li>
                 <li>
                   <%= link_to 'Register A Business', new_business_path %>
                 </li>
 
+                <li class="divider-vertical"></li>
                 <li>
                   <%= link_to 'Manage Businesses', user_businesses_path %>
+                </li>
+
+                <li class="divider-vertical"></li>
+                <li>
+                   <%= link_to 'Logout', logout_path, :method => :delete %>
                 </li>
             <% else %>
                 <li>
                   <%= link_to 'Sign In', login_path %>
                 </li>
 
+                <li class="divider-vertical"></li>
                 <li>
                   <%= link_to 'Register', register_path %>
                 </li>

@@ -3,9 +3,6 @@ class BusinessesController < ApplicationController
   before_filter :authenticate_user!, :except=>[:show,:index]
   before_filter :get_business, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
-
-  # initialize owner variable
-  before_filter :is_business_owner
   load_and_authorize_resource
 
   def index
@@ -25,7 +22,7 @@ class BusinessesController < ApplicationController
 
   def show
     if @business.approved?
-      @products = @business.products.all
+      @products = @business.products.page params[:page]
       @catalogs = @business.catalogs.all
       respond_with(@business)
     else

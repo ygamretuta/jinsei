@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711100631) do
+ActiveRecord::Schema.define(:version => 20120714020758) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -37,20 +37,47 @@ ActiveRecord::Schema.define(:version => 20120711100631) do
 
   add_index "catalogs", ["business_id"], :name => "index_catalogs_on_business_id"
 
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "slug"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "categories", ["slug"], :name => "categories_slug_unique", :unique => true
+
   create_table "products", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "business_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
     t.string   "slug"
     t.string   "photo"
     t.integer  "catalog_id"
+    t.integer  "rating",                                     :default => 0
+    t.boolean  "in_stock",                                   :default => true
+    t.decimal  "price",       :precision => 10, :scale => 0
+    t.integer  "category_id"
   end
 
   add_index "products", ["business_id"], :name => "index_products_on_business_id"
   add_index "products", ["catalog_id"], :name => "index_products_on_catalog_id"
   add_index "products", ["slug"], :name => "index_products_on_slug", :unique => true
+
+  create_table "rates", :force => true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "stars",         :null => false
+    t.string   "dimension"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
+  add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

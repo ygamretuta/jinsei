@@ -1,12 +1,24 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  has_many :businesses
-  devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
+  ajaxful_rater
 
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid
+  has_many :businesses
+
+  devise :database_authenticatable,
+         :registerable,
+         :omniauthable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable
+
+  attr_accessible :username,
+                  :email,
+                  :password,
+                  :password_confirmation,
+                  :remember_me,
+                  :role,
+                  :provider,
+                  :uid
 
   ROLES = %w[admin user]
 
@@ -26,6 +38,7 @@ class User < ActiveRecord::Base
         role: "user"
       )
     end
+
     user
   end
 
@@ -60,8 +73,7 @@ class User < ActiveRecord::Base
               self.attributes = params
               self.valid?
               self.errors.add(:current_password, current_password.blank? ? :blank : :invalid)
-
-             end
+            end
   end
 
   def self.new_with_session(params, session)

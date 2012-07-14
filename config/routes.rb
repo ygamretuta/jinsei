@@ -21,6 +21,7 @@ Jinsei::Application.routes.draw do
   match '/c/:business_id/:id', :to => 'catalogs#show', :as => 'catalog_name'
   match '/profile', :to=>'users#show'
   match '/my-businesses', :to => 'users#businesses', :as => 'user_businesses'
+  match '/category/:category_id', :to => 'products#category', :as =>'category_products'
 
   root :to => "businesses#index"
 

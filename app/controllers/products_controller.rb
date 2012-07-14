@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
+  before_filter :authenticate_user!, :except =>[:index, :show]
   layout proc {|controller| controller.request.xhr? ? false : "application"}
   load_and_authorize_resource
+
 
   before_filter :get_embedded_business
   before_filter :require_owner, :only => [:new, :create, :edit, :update, :destroy]
@@ -9,10 +11,10 @@ class ProductsController < ApplicationController
     @business = Business.find_by_slug(params[:business_id])
     if params.has_key?(:catalog_id)
       @catalog = Catalog.find(params[:catalog_id])
-      @products = @catalog.products
+      @products = @catalog.products.page params[:page]
       respond_with(@business, @catalog, @products)
     else
-      @products = @business.products
+      @products = @business.products.page params[:page]
       respond_with(@business, @products)
     end
   end
@@ -26,6 +28,7 @@ class ProductsController < ApplicationController
 
   def new
     @business = Business.find(params[:business_id])
+    @categories = Category.all
     @catalogs = @business.catalogs.all
     @product = @business.products.build
     respond_with(@product)
@@ -34,6 +37,7 @@ class ProductsController < ApplicationController
   def edit
     @business = Business.find(params[:business_id])
     @catalogs = @business.catalogs.all
+    @categories = Category.all
     @product = Product.find(params[:id])
   end
 
@@ -56,5 +60,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
     redirect_to business_products_path(@business)
+  end
+
+  def category
+    @category = Category.find(params[:category_id])
+    @products = @category.products.page params[:page]
   end
 end
