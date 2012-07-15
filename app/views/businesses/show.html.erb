@@ -26,21 +26,23 @@
     </div>
 <% end %>
 
-<div class="tabbable">
-  <ul class="nav nav-tabs" id="tabs_business_show">
-    <li class="active"><%= link_to "All Products", "#all", {"data-toggle"=>"tab", "data-url"=> business_products_path(@business), "data-segment" => 'all'} %></li>
-    <% if @catalogs %>
-        <% @catalogs.each do |c| %>
-        <li>
-          <%= link_to c.name, "#"+c.slug.to_s, {"data-toggle" => "tab", "data-url"=> business_catalog_products_path(@business,c), "data-segment" => c.slug}%>
-        </li>
-        <% end %>
-    <% end %>
-  </ul>
+<div class="row">
+  <div class="tabbable span10">
+    <ul class="nav nav-tabs" id="tabs_business_show">
+      <li class="active"><%= link_to "All Products", "#all", {"data-toggle"=>"tab", "data-url"=> business_products_path(@business), "data-segment" => 'all'} %></li>
+      <% if @catalogs %>
+          <% @catalogs.each do |c| %>
+          <li>
+            <%= link_to c.name, "#"+c.slug.to_s, {"data-toggle" => "tab", "data-url"=> business_catalog_products_path(@business,c), "data-segment" => c.slug}%>
+          </li>
+          <% end %>
+      <% end %>
+    </ul>
 
-  <div class="tab-content">
-    <div class="tab-pane active" id="all">
-      <%= render_cell :products, :index, {:business=>@business,:products=>@products} %>
+    <div class="tab-content">
+      <div class="tab-pane active" id="all">
+        <%= render_cell :products, :index, {:business=>@business,:products=>@products} %>
+      </div>
     </div>
   </div>
 </div>

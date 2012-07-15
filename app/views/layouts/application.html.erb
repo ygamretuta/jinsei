@@ -32,17 +32,24 @@
                 </li>
 
                 <li class="divider-vertical"></li>
-                <li>
-                   <%= link_to 'Logout', logout_path, :method => :delete %>
-                </li>
             <% else %>
-                <li>
+                <li class="divider-vertical">
                   <%= link_to 'Sign In', login_path %>
                 </li>
 
                 <li class="divider-vertical"></li>
                 <li>
                   <%= link_to 'Register', register_path %>
+                </li>
+            <% end %>
+
+            <li><%= link_to 'Browse Businesses', businesses_path %></li>
+            <li class="divider-vertical"></li>
+            <li><%= link_to 'Browse Products', products_path %></li>
+
+            <% if user_signed_in? %>
+                <li>
+                   <%= link_to 'Logout', logout_path, :method => :delete %>
                 </li>
             <% end %>
           </ul>

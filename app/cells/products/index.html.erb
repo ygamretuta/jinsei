@@ -1,6 +1,6 @@
 <% if @products.count > 0 %>
     <%= paginate @products %>
-    <ul class="list_products_catalog">
+    <ul class="list_products_catalog list-bordered">
         <% @products.each do |p| %>
             <li>
               <div class="catalog_thumb"></div>
@@ -15,11 +15,11 @@
                         <%= image_tag p.photo.medium.url %>
                     <% end %>
                   </div>
-                  <ul class="list_products_details span10">
+                  <ul class="list_products_details span8">
                     <li><%= link_to p.name, product_name_path(p.business.id, p) %></li>
                     <li class="row">
-                      <ul class="span2 product-details">
-                        <li><div class="rateit" data-rateit-value="<%= p.rating %>" data-rateit-preset="true" data-rateit-readonly="true"></div></li>
+                      <ul class="span3 product-details">
+                        <li><div class="rateit rating" data-rateit-value="<%= p.rating %>" data-rateit-preset="true" data-rateit-readonly="true"></div></li>
                         <li>
                           <% if p.price %>
                             <span class="price"><%= p.price %></span>
@@ -29,12 +29,18 @@
                         </li>
                       </ul>
 
-                      <ul class="span5 product-details">
+                      <ul class="pull-left product-details">
                         <li>
                           <span class="text-category"><%= p.category.name %>:</span>
                           <%= link_to 'View other items in this category', category_products_path(p.category)%>
                         </li>
+
+                        <li>
+                          <span class="text-category">Sold by <%= p.business.name %>:</span>
+                          <%= link_to 'View all items in this business', business_name_path(p.business) %>
+                        </li>
                       </ul>
+
                     </li>
                   </ul>
                 </li>

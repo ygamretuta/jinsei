@@ -6,7 +6,8 @@ class BusinessesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    respond_with(@businesses=Business.where(:approved => true).all)
+    @businesses = Business.where(:approved=>true).page(params[:page]).per(1)
+    respond_with(@businesses)
   end
 
   def new
@@ -22,6 +23,7 @@ class BusinessesController < ApplicationController
 
   def show
     if @business.approved?
+      @categories = Category.all
       @products = @business.products.page params[:page]
       @catalogs = @business.catalogs.all
       respond_with(@business)

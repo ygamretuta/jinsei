@@ -20,6 +20,14 @@ $(function(){
 
         $('div.active').load(url, function(){
             $(this).attr('id', segment);
+
+            $('.rating').each(function(){
+                // initialize first
+                $(this).rateit();
+
+                // then assign value
+                $(this).rateit('value', $(this).data('rateit-value'));
+            });
         });
     });
 });
