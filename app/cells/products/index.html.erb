@@ -1,24 +1,14 @@
-<% if @products.count > 0 %>
-    <%= paginate @products %>
-    <ul class="list_products_catalog list-bordered">
-        <% @products.each do |p| %>
-            <li>
-              <div class="catalog_thumb"></div>
-              <ul>
-                <li class="list_catalog_name row">
-                  <div class="container_image_product span2">
-                    <% if p.photo.blank? %>
-                        <a class="thumbnail">
-                          <%= image_tag p.photo.medium.url %>
-                        </a>
-                    <% else %>
-                        <%= image_tag p.photo.medium.url %>
-                    <% end %>
-                  </div>
-                  <ul class="list_products_details span8">
-                    <li><%= link_to p.name, product_name_path(p.business.id, p) %></li>
-                    <li class="row">
-                      <ul class="span3 product-details">
+<%= paginate @products %>
+<ul class="list_products_catalog list-bordered">
+    <% @products.each do |p| %>
+        <li class="clearfix">
+          <div class="photo-medium"><%= image_tag(p.photo.medium.url) %></div>
+
+          <div class="name-and-details">
+              <h2><%= link_to p.name, product_name_path(p.business.id, p) %></h2>
+              <ul class="list_products_details details-box">
+                <li class="details">
+                    <ul>
                         <li><div class="rateit rating" data-rateit-value="<%= p.rating %>" data-rateit-preset="true" data-rateit-readonly="true"></div></li>
                         <li>
                           <% if p.price %>
@@ -27,28 +17,25 @@
                             <span class="price-not-available"><%= t 'Price is not Available' %></span>
                           <% end %>
                         </li>
-                      </ul>
+                    </ul>
+                </li>
 
-                      <ul class="pull-left product-details">
-                        <li>
-                          <span class="text-category"><%= p.category.name %>:</span>
-                          <%= link_to 'View other items in this category', category_products_path(p.category)%>
-                        </li>
+                <li>
+                  <ul class="pull-left product-details">
+                    <li>
+                      <span class="text-category"><%= p.category.name %>:</span>
+                      <%= link_to 'View other items in this category', category_products_path(p.category)%>
+                    </li>
 
-                        <li>
-                          <span class="text-category">Sold by <%= p.business.name %>:</span>
-                          <%= link_to 'View all items in this business', business_name_path(p.business) %>
-                        </li>
-                      </ul>
-
+                    <li>
+                      <span class="text-category">Sold by <%= p.business.name %>:</span>
+                      <%= link_to 'View all items in this business', business_name_path(p.business) %>
                     </li>
                   </ul>
                 </li>
               </ul>
-            </li>
-        <% end %>
-    </ul>
-    <%= paginate @products %>
-<% else %>
-    <p class="alert alert-info"><%= t "app.product_list_empty"%></p>
-<% end %>
+          </div>
+        </li>
+    <% end %>
+</ul>
+<%= paginate @products %>

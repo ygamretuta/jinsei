@@ -1,1 +1,9 @@
-<%= render_cell :products, :index, {:products=>@products} %>
+<div class="row">
+    <div class="span3">
+        <%= render_cell :categories, :index, {:type => @type, :categories => @categories} %>
+    </div>
+
+    <div class="span9">
+        <%= render_cell :products, :index, {:products => @products} %>
+    </div>
+</div>

@@ -2,14 +2,14 @@ body
   font-family: Inconsolata, Arial, sans-serif
   padding-top: 60px
 
+h2
+  line-height: 1
+  font-weight: lighter
+
 ul
   list-style: none
   margin: 0
   padding: 0
-
-.list_business h2
-  text-align: center
-  font-size: 14px
 
 .photo_index_business img
   display: block
@@ -24,7 +24,6 @@ ul
 .p_description_business
   padding-left: 35px
   padding-right: 35px
-  text-align: center
 
 .subnav
   background-color: #EEEEEE
@@ -51,9 +50,6 @@ ul
 .list_catalog_name
   font-weight: bold
   padding: 8px 0
-
-.container_image_product
-  text-align: center
 
 .container_image_product .thumbnail
   width: 115px
@@ -83,6 +79,27 @@ span.text-category
 
 ul.list-bordered > li
   border-bottom: 1px dotted #ccc
+  padding: 10px 0
+
+ul.list-bordered > li:last-child
+  border-bottom: transparent
 
 ul#filter-category li a
   font-size: 11px
+
+/* list items styling for products and businesses */
+.photo-medium
+  float: left
+  width: 120px
+  margin-right: 20px
+
+.name-and-details
+  float: left
+  width: 700px
+
+.details
+  float: left
+  width: 350px
+
+.details-box
+  margin-top: 10px

@@ -1,12 +1,18 @@
 class BusinessesController < ApplicationController
 
-  before_filter :authenticate_user!, :except=>[:show,:index]
+  before_filter :authenticate_user!, :except=>[:show,:index, :category]
   before_filter :get_business, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
   load_and_authorize_resource
 
+  def get_business
+    @business = Business.find(params[:id])
+  end
+
   def index
-    @businesses = Business.where(:approved=>true).page(params[:page]).per(1)
+    @categories = Category.all
+    @businesses = Business.where(:approved=>true).page(params[:page])
+    @type = 'business'
     respond_with(@businesses)
   end
 
@@ -51,8 +57,10 @@ class BusinessesController < ApplicationController
     redirect_to root_path
   end
 
-  protected
-    def get_business
-      @business = Business.find(params[:id])
-    end
+  def category
+    @type = 'business'
+    @categories = Category.all
+    @category = Category.find(params[:category_id])
+    @businesses = @category.businesses.page params[:page]
+  end
 end

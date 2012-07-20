@@ -16,12 +16,13 @@ Jinsei::Application.routes.draw do
     delete 'logout', :to => 'devise/sessions#destroy'
   end
 
+  match '/p/category/:category_id', :to => 'products#category', :as =>'category_products'
   match '/b/:id', :to => 'businesses#show', :as => 'business_name'
   match '/p/:business_id/:id', :to => 'products#show', :as => 'product_name'
   match '/c/:business_id/:id', :to => 'catalogs#show', :as => 'catalog_name'
   match '/profile', :to=>'users#show'
   match '/my-businesses', :to => 'users#businesses', :as => 'user_businesses'
-  match '/category/:category_id', :to => 'products#category', :as =>'category_products'
+  match '/b/category/:category_id', :to => 'businesses#category', :as => 'category_business'
   match '/products', :to => 'products#all', :as => 'products'
 
   root :to => "businesses#index"

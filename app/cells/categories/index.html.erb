@@ -1,0 +1,9 @@
+<ul id="filter-category">
+  <% @categories.each do |c| %>
+    <% if @type == 'business' %>
+      <li><%= link_to c.name, category_business_path(c) %></li>
+    <% elsif @type == 'product' %>
+      <li><%= link_to c.name, category_products_path(c) %></li>
+    <% end %>
+  <% end %>
+</ul>

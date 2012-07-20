@@ -1,0 +1,43 @@
+<%= paginate @businesses %>
+
+<ul class="list_business list-bordered span9">
+    <% @businesses.each do |b| %>
+       <li class="clearfix">
+         <% unless b.photo.blank? %>
+          <div class="photo_index_business photo-medium"><%= image_tag(b.photo.medium.url)%></div>
+         <% end %>
+
+         <div class="name-and-details">
+            <h2><%= link_to b.name, business_name_path(b)  %></h2>
+            <ul class="clearfix details-box" >
+              <li class="details">
+                <ul>
+                  <li>
+                    <div class="rateit rating" data-rateit-value="<%= b.rating %>" data-rateit-preset="true" data-rateit-readonly="true"></div>
+                  </li>
+
+                  <li>
+                    Main Branch:<%= b.address %>
+                  </li>
+
+                  <li>
+                    <%= link_to 'View All Branches' %>
+                  </li>
+
+                  <li><%= link_to 'View Products', business_name_path(b) %></li>
+                </ul>
+              </li>
+
+              <li class="details">
+                <blockquote>
+                  <p>TODO: Create a reviews model for business and product.</p>
+                  <small>TODO: Put user who made review here</small>
+                </blockquote>
+              </li>
+            </ul>
+         </div>
+       </li>
+    <% end %>
+</ul>
+
+<%= paginate @businesses %>

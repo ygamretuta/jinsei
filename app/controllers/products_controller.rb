@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
-  before_filter :authenticate_user!, :except =>[:index, :show]
+  before_filter :authenticate_user!, :except =>[:index, :show, :all, :category]
   layout proc {|controller| controller.request.xhr? ? false : "application"}
   load_and_authorize_resource
-
 
   before_filter :get_embedded_business
   before_filter :require_owner, :only => [:new, :create, :edit, :update, :destroy]
@@ -63,12 +62,17 @@ class ProductsController < ApplicationController
   end
 
   def category
+    @type = 'product'
     @category = Category.find(params[:category_id])
-    @products = @category.products.page params[:page]
+    @categories = Category.all
+    collection = @category.products.includes(:business).where('businesses.approved = ?', true).all
+    @products = Kaminari.paginate_array(collection).page(params[:page])
   end
 
   def all
+    @type = 'product'
     @categories = Category.all
+    @type = 'product'
     collection = Product.includes(:business).where('businesses.approved = ?', true).all
     @products = Kaminari.paginate_array(collection).page(params[:page])
   end
