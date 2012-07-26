@@ -4,6 +4,6 @@ class CategoriesCell < Cell::Rails
     @categories = args[:categories]
     @type = args[:type]
     return render if @categories.count > 0
-    render :view => 'shared/blank_list'
+    render :text => '<p class="alert">No Categories Yet</p>'
   end
 end
