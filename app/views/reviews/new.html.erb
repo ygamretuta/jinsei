@@ -1,0 +1,19 @@
+<div class="alert">
+  <% if @product %>
+      <%= t 'You Are Reviewing' %> <%= @product.name %> <%= t 'as sold by ' %> <%= @business.name %>
+  <% else %>
+      <%= t 'You Are Reviewing' %> <%= @business.name %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <%= render 'form' %>
+  </div>
+
+  <div class="span6">
+    <% if @product %>
+        <%= image_tag(@product.photo.large.url)  %>
+    <% end %>
+  </div>
+</div>

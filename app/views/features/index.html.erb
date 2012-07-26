@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="span2">
+    <h2>Manager</h2>
+    <ul>
+      <li><%= link_to 'Add A Feature', new_business_product_feature_path(@business, @product) %></li>
+    </ul>
+  </div>
+
+  <div class="span10">
+    <h2>Features for <%= @product.name %> Sold By <%= @business.name %></h2>
+    <%= render_cell :features, :index, {:business => @business, :product => @product, :condition=>@business.is_owned_by?(current_user)} %>
+  </div>
+</div>

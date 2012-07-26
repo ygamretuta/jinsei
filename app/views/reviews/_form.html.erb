@@ -1,0 +1,14 @@
+<%= simple_form_for(@form_resources, :html=>{:class=>'form-horizontal'}) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :title %>
+      <%= f.input :rating, :input_html => {:maxlength => 1}, :placeholder=>'Enter Rating From 1-5' %>
+      <%= f.input :text, :input_html => {:rows=>5}%>
+      <%= f.input :for, :as => :hidden, :input_html => {:value => @type} %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, :class=> 'btn btn-primary' %>
+    </div>
+<% end %>

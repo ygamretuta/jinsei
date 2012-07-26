@@ -1,5 +1,7 @@
 class ProductsCell < Cell::Rails
 
+  helper ApplicationHelper
+
   def index(args)
     @type = args[:type]
     @products = args[:products]

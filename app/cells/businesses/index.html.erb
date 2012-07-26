@@ -1,6 +1,6 @@
 <%= paginate @businesses %>
 
-<ul class="list_business list-bordered span9">
+<ul class="list_business list-bordered">
     <% @businesses.each do |b| %>
        <li class="clearfix">
          <% unless b.photo.blank? %>
@@ -13,7 +13,7 @@
               <li class="details">
                 <ul>
                   <li>
-                    <div class="rateit rating" data-rateit-value="<%= b.rating %>" data-rateit-preset="true" data-rateit-readonly="true"></div>
+                    <div class="rateit rating" data-rateit-value="<%= calculate_average_rating(b.reviews) %>" data-rateit-preset="true" data-rateit-readonly="true"></div>
                   </li>
 
                   <li>

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719095228) do
+ActiveRecord::Schema.define(:version => 20120723094645) do
+
+  create_table "branches", :force => true do |t|
+    t.string   "location"
+    t.integer  "business_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -23,7 +30,6 @@ ActiveRecord::Schema.define(:version => 20120719095228) do
     t.integer  "user_id"
     t.boolean  "approved",    :default => false
     t.text     "address"
-    t.integer  "rating"
     t.integer  "category_id"
   end
 
@@ -50,16 +56,22 @@ ActiveRecord::Schema.define(:version => 20120719095228) do
 
   add_index "categories", ["slug"], :name => "categories_slug_unique", :unique => true
 
+  create_table "features", :force => true do |t|
+    t.integer  "product_id"
+    t.text     "feature"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "products", :force => true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.integer  "business_id"
     t.datetime "created_at",                                                   :null => false
     t.datetime "updated_at",                                                   :null => false
     t.string   "slug"
     t.string   "photo"
     t.integer  "catalog_id"
-    t.integer  "rating",                                     :default => 0
     t.boolean  "in_stock",                                   :default => true
     t.decimal  "price",       :precision => 10, :scale => 0
     t.integer  "category_id"
@@ -81,6 +93,18 @@ ActiveRecord::Schema.define(:version => 20120719095228) do
 
   add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
   add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "for"
+    t.boolean  "approved",    :default => false
+    t.integer  "reviewed_id"
+    t.integer  "rating"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.text     "text"
+    t.string   "title"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

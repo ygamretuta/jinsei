@@ -24,12 +24,18 @@ Jinsei::Application.routes.draw do
   match '/my-businesses', :to => 'users#businesses', :as => 'user_businesses'
   match '/b/category/:category_id', :to => 'businesses#category', :as => 'category_business'
   match '/products', :to => 'products#all', :as => 'products'
+  match '/:business_id/:product_id/all_features', :to=>'features#all', :as => 'features_raw_list'
 
   root :to => "businesses#index"
 
 
   resources :businesses do
-    resources :products
+    resources :reviews
+
+    resources :products do
+      resources :reviews
+      resources :features
+    end
 
     resources :catalogs do
       resources :products

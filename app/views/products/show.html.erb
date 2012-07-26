@@ -1,41 +1,67 @@
 <div class="subnav">
     <ul class="list_product_actions nav nav-pills">
-      <li><%= link_to "Edit", edit_business_product_path(@business, @product) %></li>
-      <li>
-        <%= link_to "Delete", business_product_path(@business, @product),
-          :method => :delete, :confirm => "Are you sure" %>
-      </li>
+
+      <% if current_user and @business.is_owned_by?(current_user) %>
+          <li><%= link_to "Edit", edit_business_product_path(@business, @product) %></li>
+          <li>
+            <%= link_to "Delete", business_product_path(@business, @product),
+              :method => :delete, :confirm => "Are you sure" %>
+          </li>
+
+          <li>
+            <%= link_to 'Manage Features', business_product_features_path(@business, @product) %>
+          </li>
+      <% end %>
 
       <li>
         <%= link_to "Back To " + @business.name, business_path(@business) %>
       </li>
 
       <% unless @catalog.nil? %>
-      <li>
-        <%= link_to "Items In " + @catalog.name, business_catalog_path(@business, @catalog) %>
-      </li>
+          <li>
+            <%= link_to "Items In " + @catalog.name, business_catalog_path(@business, @catalog) %>
+          </li>
+      <% end %>
+
+      <% if current_user and not @business.is_owned_by?(current_user)  %>
+          <li>
+            <%= link_to 'Review', new_business_product_review_path(@business, @product) %>
+          </li>
       <% end %>
     </ul>
 </div>
 
 
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="span5">
+    <h2><%= @product.name %></h2>
+    <blockquote><p><%= @product.description %></p></blockquote>
+  </div>
 
-<p>
-  <b>Name:</b>
-  <%= @product.name %>
-</p>
+  <div class="span5">
+    <%= image_tag(@product.photo.large.url) %>
+  </div>
 
-<p>
-  <b>Description:</b>
-  <%= @product.description %>
-</p>
+  <div class="span2">
+    <% if @product.price %>
+        <%= @product.price %>
+    <% else %>
+        <% t 'Price N/A' %>
+    <% end %>
+  </div>
+</div>
 
-<% unless @product.photo.blank? %>
-<p>
-  <%= image_tag(@product.photo.medium.url) %>
-</p>
-<% end %>
+<div class="row">
+  <div class="tabbable span10">
+    <ul class="nav nav-tabs">
+      <li class="active"><%= link_to 'Features', '#features', {'data-toggle'=>'tab', 'data-segment'=> 'features', 'data-url'=> features_raw_list_path(@business, @product)} %></li>
+      <li><%= link_to 'Reviews', '#reviews', {'data-toggle'=>'tab', "data-url"=> business_product_reviews_path(@business, @product), "data-segment" => 'reviews'} %></li>
+    </ul>
 
-
-<%= link_to 'Edit', edit_business_product_path(@business,@product) %>
+    <div class="tab-content">
+      <div class="tab-pane active" id="features">
+        <%= render_cell :features, :index, {:business=>@business, :product=>@product} %>
+      </div>
+    </div>
+  </div>
+</div>

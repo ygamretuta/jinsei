@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
     @business = Business.find(params[:business_id])
     @product = Product.find(params[:id])
     @catalog = @product.catalog
+    @features = @product.features
     respond_with(@product, :location => product_name_url(@business, @product))
   end
 

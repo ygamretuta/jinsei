@@ -1,0 +1,13 @@
+<p class="alert">You are writing a feature for <%= @product.name %> sold by <%= @business.name %></p>
+
+<%= simple_form_for([@business, @product, @feature]) do |f|%>
+    <legend>Feature Form</legend>
+
+    <%= f.error_notification %>
+
+    <%= f.input :feature, :input_html => {:rows=>5} %>
+
+    <div class="well form-actions">
+      <%= f.button :submit, :class => 'btn btn-primary' %>
+    </div>
+<% end %>

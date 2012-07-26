@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  ajaxful_rater
-
   has_many :businesses
 
   devise :database_authenticatable,
