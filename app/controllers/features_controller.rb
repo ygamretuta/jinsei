@@ -38,7 +38,7 @@ class FeaturesController < ApplicationController
     @feature = @product.features.build(params[:feature])
 
     if @feature.save
-      flash[:notice] = 'Review is saved'
+      flash[:notice] = 'New feature successfully added!'
       redirect_to business_product_path(@business, @product)
     else
       respond_with(@business, @product, @feature)

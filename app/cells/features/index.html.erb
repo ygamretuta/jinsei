@@ -1,7 +1,10 @@
-<ul>
+<ul class="list-text">
   <% @features.each do |f| %>
     <li>
-      <%= best_in_place_if @business.is_owned_by?(current_user), [@business, @product, f], :feature, :type => :textarea  %>
+      <i class="icon-circle-arrow-right"></i>
+      <%= best_in_place_if @business.is_owned_by?(current_user), [@business, @product, f], :feature, :type => :textarea,
+        :ok_button => 'Save Changes', :activator => "#edit-feature-#{f.id}"%>
+      <i class="icon-pencil bip-edit" id="edit-feature-<%= f.id %>"></i>
     </li>
   <% end %>
 </ul>

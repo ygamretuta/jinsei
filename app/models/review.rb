@@ -14,6 +14,8 @@ class Review < ActiveRecord::Base
   validate :rating_less_than_equal_5
   validate :type_must_be_product_or_business
 
+  scope :approved, where(:approved => true)
+
   private
     def rating_less_than_equal_5
       if self.rating and (self.rating > 5 or self.rating < 1)

@@ -2,6 +2,8 @@ class ReviewsController < ApplicationController
 
   layout proc {|controller| controller.request.xhr? ? false:'application'}
   before_filter :authenticate_user!, :except => [:index]
+  before_filter :get_embedded_business, :only => [:pending_product]
+  before_filter :require_owner, :only => [:pending_product]
 
   def index
     @business = Business.find(params[:business_id])
@@ -10,7 +12,7 @@ class ReviewsController < ApplicationController
       @product = Product.find(params[:product_id])
     end
 
-    @reviews = (@product.nil?) ? @business.reviews: @product.reviews
+    @reviews = (@product.nil?) ? @business.reviews.approved: @product.reviews.approved
 
     if (@product.nil?)
       respond_with(@business, @reviews)
@@ -96,5 +98,13 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.destroy
     redirect_to request.referer
+  end
+
+  def pending_product
+    @product = Product.find(params[:product_id])
+    @reviews = @product.reviews
+    respond_with(@business, @product, @reviews) do |format|
+      format.html { render :template => 'reviews/pending' }
+    end
   end
 end
