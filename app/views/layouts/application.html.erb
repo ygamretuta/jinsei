@@ -29,8 +29,6 @@
                 <li>
                   <%= link_to 'Manage Businesses', user_businesses_path %>
                 </li>
-
-                <li class="divider-vertical"></li>
             <% else %>
                 <li class="divider-vertical"><li>
                 <li>
@@ -43,6 +41,7 @@
                 </li>
             <% end %>
 
+            <li class="divider-vertical"></li>
             <li><%= link_to 'Browse Businesses', businesses_path %></li>
             <li class="divider-vertical"></li>
             <li><%= link_to 'Browse Products', products_path %></li>

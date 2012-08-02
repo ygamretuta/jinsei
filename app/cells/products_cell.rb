@@ -8,6 +8,6 @@ class ProductsCell < Cell::Rails
     @business = args[:business]
     @catalog = args[:catalog]
     return render if @products.count and @products.count > 0
-    render :view => :blank_list
+    render :text => "<p class='alert'>#{t 'app.products_empty'}</p>"
   end
 end

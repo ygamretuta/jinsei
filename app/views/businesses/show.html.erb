@@ -22,6 +22,10 @@
           <li>
             <%= link_to "All Catalogs", business_catalogs_path(@business) %>
           </li>
+
+          <li>
+            <%= link_to "Manage Branches", business_branches_path(@business) %>
+          </li>
         </ul>
     </div>
 <% end %>
@@ -30,6 +34,7 @@
   <div class="tabbable span10">
     <ul class="nav nav-tabs" id="tabs_business_show">
       <li class="active"><%= link_to "All Products", "#all", {"data-toggle"=>"tab", "data-url"=> business_products_path(@business), "data-segment" => 'all'} %></li>
+      <li><%= link_to "Branches", "#all", {"data-toggle"=>"tab", "data-url"=>branches_raw_list_path(@business), "data-segment"=>"all"} %></li>
       <% if @catalogs %>
           <% @catalogs.each do |c| %>
           <li>

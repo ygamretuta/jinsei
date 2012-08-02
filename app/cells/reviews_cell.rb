@@ -5,6 +5,6 @@ class ReviewsCell < Cell::Rails
     @product = args[:product]
     @reviews = args[:reviews]
     return render if @reviews.respond_to?(:each) and @reviews.count > 0
-    render :text => '<p class="alert">No Approved Reviews Yet</p>'
+    render :text => "<p class='alert'>#{t 'app.reviews_empty'}</p>"
   end
 end

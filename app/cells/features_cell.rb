@@ -1,7 +1,7 @@
 class FeaturesCell < Cell::Rails
 
   include Devise::Controllers::Helpers
-  helper_method :current_user
+  helper_method :current_user, :user_signed_in?
 
   def index(args)
     @business = args[:business]

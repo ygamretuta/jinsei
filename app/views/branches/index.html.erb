@@ -1,0 +1,15 @@
+<div class="row">
+    <% if current_user and @business.is_owned_by?(current_user) %>
+        <div class="span3">
+            <h2>Manage Branches</h2>
+            <ul>
+              <li><%= link_to 'Add Branch', new_business_branch_path(@business) %></li>
+              <li><%= link_to "Back to #{@business.name}", business_path(@business) %></li>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="span9">
+        <%= render_cell :branches, :index, {:business=>@business, :branches => @branches} %>
+    </div>
+</div>

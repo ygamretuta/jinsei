@@ -4,6 +4,6 @@ class CategoriesCell < Cell::Rails
     @categories = args[:categories]
     @type = args[:type]
     return render if @categories.count > 0
-    render :text => '<p class="alert">No Categories Yet</p>'
+    render :text => "<p class='alert'>#{t 'app.categories_empty'}</p>"
   end
 end

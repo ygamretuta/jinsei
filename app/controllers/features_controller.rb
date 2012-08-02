@@ -1,9 +1,9 @@
 class FeaturesController < ApplicationController
   layout proc {|controller| controller.request.xhr? ? false : "application"}
 
-  before_filter :authenticate_user!, :except => [:index]
+  before_filter :authenticate_user!, :except => [:index, :all]
   before_filter :setup, :except => [:index]
-  before_filter :require_owner, :except => [:index]
+  before_filter :require_owner, :except => [:index, :all]
 
   def setup
     @business = Business.find(params[:business_id])
@@ -12,7 +12,7 @@ class FeaturesController < ApplicationController
 
   def index
     setup
-    @features = @product.reviews
+    @features = @product.features
   end
 
   # differs in that this does not render the sidebar and the headers for the review

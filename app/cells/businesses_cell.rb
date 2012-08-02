@@ -5,6 +5,6 @@ class BusinessesCell < Cell::Rails
   def index(args)
     @businesses = args[:businesses]
     return render if @businesses.count > 0
-    render :view => :blank_list
+    render :text => "<p class='alert'>#{t 'app.businesses_empty'}</p>"
   end
 end
