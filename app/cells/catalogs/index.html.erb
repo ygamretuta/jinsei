@@ -1,0 +1,17 @@
+<%= paginate @catalogs %>
+<ul class="list-bordered">
+  <% @catalogs.each do |c| %>
+    <li class="clearfix">
+      <% if c.products.first %>
+        <div class="photo-medium"><%= image_tag(c.products.first.photo.medium.url) %></div>
+      <% end %>
+
+      <div class="name-and-details">
+        <h2><%= link_to c.name, business_catalog_path(@business, c) %></h2>
+        <p><%= c.description %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= paginate @catalogs %>

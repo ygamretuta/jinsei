@@ -10,6 +10,7 @@ class BranchesController < ApplicationController
 
   def index
     @branches = @business.branches
+    @editable = current_user and @business.is_owned_by?(current_user)
   end
 
   def all
@@ -25,22 +26,22 @@ class BranchesController < ApplicationController
 
     if @branch.save
       flash[:notice] = 'Branch Successfully Created!'
-      redirect_to business_path(@business)
+      redirect_to business_branches_path(@business)
     else
       respond_with(@branch)
     end
   end
 
   def edit
-    respond_with(@branch = @business.branch.find(params[:id]))
+    respond_with(@branch = @business.branches.find(params[:id]))
   end
 
   def update
-    @branch = @business.branch.find(params[:id])
+    @branch = @business.branches.find(params[:id])
 
     if @branch.update_attributes(params[:branch])
       flash[:notice] = 'Branch Successfully Updated!'
-      redirect_to business_path(@business)
+      redirect_to business_branches_path(@business)
     else
       respond_with(@branch)
     end

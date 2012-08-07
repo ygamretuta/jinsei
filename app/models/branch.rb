@@ -1,5 +1,5 @@
 class Branch < ActiveRecord::Base
-  attr_accessible :business_id, :location
+  attr_accessible :business_id, :location, :phone, :mobile
 
   belongs_to :business
 

@@ -1,15 +1,13 @@
-<p id="notice"><%= notice %></p>
+<% if current_user and @business.is_owned_by?(current_user) %>
+    <div class="subnav">
+      <ul class="nav nav-pills">
+        <li><%= link_to 'Edit', edit_business_catalog_path(@business, @catalog) %></li>
+        <li><%= link_to "Back to #{@business.name}", business_catalogs_path(@business) %></li>
+      </ul>
+    </div>
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @catalog.name %>
-</p>
+<h2><%= @catalog.name %></h2>
+<p><%= @catalog.description %></p>
 
-<p>
-  <b>Description:</b>
-  <%= @catalog.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_business_catalog_path(@catalog) %> |
-<%= link_to 'Back', business_catalogs_path(@business) %>
+<%= render_cell :products, :index, {:products=>@products} %>

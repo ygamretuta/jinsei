@@ -3,6 +3,16 @@
     <li>
       <i class="icon-circle-arrow-right"></i>
       <%= b.location %>
+
+      <% if @editable %>
+        <%= link_to 'Edit', edit_business_branch_path(@business, b) %>
+      <% end %>
+
+      <br />
+
+      <% if b.phone %>Phone: <%= b.phone %><% end %>
+
+      <% if b.mobile %> | Mobile:<%= b.mobile %><% end %>
     </li>
   <% end %>
 </ul>

@@ -1,6 +1,6 @@
-<h1>Editing catalog</h1>
+<h2><strong>Editing:</strong> <%= @catalog.name %></h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @catalog %> |
-<%= link_to 'Back', catalogs_path %>
+<%= link_to 'Show', business_catalog_path(@business, @catalog) %> |
+<%= link_to 'Back', business_catalogs_path(@business) %>

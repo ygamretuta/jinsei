@@ -1,25 +1,3 @@
-<h1><%= @business.name %> Catalogs</h1>
+<h2><%= @business.name %> Catalogs</h2>
 
-<table class="table table-bordered">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @catalogs.each do |catalog| %>
-  <tr>
-    <td><%= catalog.name %></td>
-    <td><%= catalog.description %></td>
-    <td><%= link_to 'Show', business_catalog_path(@business, catalog) %></td>
-    <td><%= link_to 'Edit', edit_business_catalog_path(@business, catalog) %></td>
-    <td><%= link_to 'Destroy', business_catalog_path(@business, catalog), confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Catalog', new_business_catalog_path(@business) %>
+<%= render_cell :catalogs, :index, {:business=>@business, :catalogs=>@catalogs} %>
