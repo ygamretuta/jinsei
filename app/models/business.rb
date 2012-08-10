@@ -8,7 +8,7 @@ class Business < ActiveRecord::Base
   has_many :catalogs, :dependent => :destroy
   has_many :products, :dependent => :destroy
   has_many :branches, :dependent => :destroy
-  has_many :reviews, :foreign_key => :reviewed_id
+  has_many :reviews, :as => :reviewable
 
   belongs_to :user
   belongs_to :category
@@ -18,6 +18,10 @@ class Business < ActiveRecord::Base
 
   def is_owned_by?(user)
     self.user == user
+  end
+
+  def is_reviewed_by?(user)
+    return self.reviews.where(:user_id=>user.id).count > 0
   end
 
   def profile

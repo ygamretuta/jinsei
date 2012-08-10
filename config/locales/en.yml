@@ -35,3 +35,7 @@ en:
     products_empty: "There are no products listed."
     reviews_empty: "There are no reviews available."
     catalogs_empty: "There are no catalogs available."
+
+  time:
+    formats:
+      short: "%Y-%m-%d"

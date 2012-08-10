@@ -1,5 +1,17 @@
 <ul>
     <% @reviews.each do |r| %>
-        <li><%= r.text %></li>
+        <li class="list-bordered row">
+          <div class="span2">
+            <div class="rateit rating" data-rateit-value="<%= r.rating %>" data-rateit-preset="true"
+                           data-rateit-readonly="true"></div>
+            <p>Review by: <%= r.user.username %></p>
+          </div>
+
+          <div class="span6">
+            <h2><%= r.title %></h2>
+            <p><%= l r.created_at, :format => :short %></p>
+            <p><%= r.text %></p>
+          </div>
+        </li>
     <% end %>
 </ul>

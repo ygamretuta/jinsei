@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120807025112) do
+ActiveRecord::Schema.define(:version => 20120810063017) do
 
   create_table "branches", :force => true do |t|
     t.string   "location"
@@ -98,14 +98,15 @@ ActiveRecord::Schema.define(:version => 20120807025112) do
 
   create_table "reviews", :force => true do |t|
     t.integer  "user_id"
-    t.string   "for"
-    t.boolean  "approved",    :default => false
-    t.integer  "reviewed_id"
+    t.boolean  "approved",        :default => false
     t.integer  "rating"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.text     "text"
     t.string   "title"
+    t.string   "type"
+    t.integer  "reviewable_id"
+    t.string   "reviewable_type"
   end
 
   create_table "users", :force => true do |t|

@@ -12,14 +12,23 @@ class ReviewsController < ApplicationController
       @product = Product.find(params[:product_id])
     end
 
-    @reviews = (@product.nil?) ? @business.reviews.approved: @product.reviews.approved
+    # TODO: Improve this code
+    if @product.nil?
+      @reviews = @business.reviews
+      @type = 'business'
+    else
+      @reviews = @product.reviews
+      @type = 'product'
+    end
+    # ENDTODO
 
-    if (@product.nil?)
+    if @product.nil?
       respond_with(@business, @reviews)
     else
       respond_with(@business, @product, @reviews)
     end
   end
+
 
   def new
     @business = Business.find(params[:business_id])
@@ -28,42 +37,44 @@ class ReviewsController < ApplicationController
       @product = Product.find(params[:product_id])
       @review = @product.reviews.build
       @form_resources = [@business, @product, @review]
+      @type = 'product'
     else
       @review = @business.reviews.build
       @form_resources = [@business, @review]
+      @type = 'business'
     end
 
     respond_with(@review)
   end
 
-  def create
-    @business = Business.find(params[:business_id])
+def create
+  @business = Business.find(params[:business_id])
 
-    if params.has_key?('product_id')
-      @product = Product.find(params[:product_id])
-      @review = @product.reviews.build(params[:review])
-      @type = 'product'
+  if params.has_key?('product_id')
+    @product = Product.find(params[:product_id])
+    @review = @product.reviews.build(params[:review])
+    @review.user_id = current_user.id
 
-      if @review.save
-        flash[:notice] = 'Pending Review Submitted'
-        redirect_to business_product_path(@business, @product)
-      else
-        @form_resources = [@business, @product, @review]
-        respond_with(@business, @product, @review)
-      end
+    if @review.save
+      flash[:notice] = 'Pending Review Submitted'
+      redirect_to business_product_path(@business, @product)
     else
-      @review = @business.reviews.build(params[:review])
-      @type = 'business'
+      @form_resources = [@business, @product, @review]
+      respond_with(@business, @product, @review)
+    end
+  else
+    @review = @business.reviews.build(params[:review])
+    @review.user_id = current_user.id
 
-      if @review.save
-        flash[:notice] = 'Pending Review Submitted'
-        redirect_to business_path(@business)
-      else
-        @form_resources = [@business, @review]
-        respond_with(@business, @review)
-      end
+    if @review.save
+      flash[:notice] = 'Pending Review Submitted'
+      redirect_to business_path(@business)
+    else
+      @form_resources = [@business, @review]
+      respond_with(@business, @review)
     end
   end
+end
 
   def edit
     @business = Business.find(params[:business_id])

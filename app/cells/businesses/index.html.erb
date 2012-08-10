@@ -29,10 +29,12 @@
               </li>
 
               <li class="details">
-                <blockquote>
-                  <p>TODO: Create a reviews model for business and product.</p>
-                  <small>TODO: Put user who made review here</small>
-                </blockquote>
+                <% if b.reviews.count > 0%>
+                    <blockquote>
+                      <p><%= truncate b.reviews.last.text, :length => 120 %></p>
+                      <small><%= b.reviews.first.user.username %></small>
+                    </blockquote>
+                <% end %>
               </li>
             </ul>
          </div>

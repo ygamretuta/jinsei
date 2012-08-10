@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   belongs_to :catalog
   belongs_to :category
 
-  has_many :reviews, :foreign_key => :reviewed_id
+  has_many :reviews, :as => :reviewable
   has_many :features, :dependent => :destroy
 
   attr_accessible :description, :name, :photo, :catalog_id, :remove_photo, :in_stock, :category_id, :price
@@ -25,8 +25,12 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def is_reviewed_by(user)
+    return self.reviews.where(:user_id=>user.id).count > 0
+  end
+
   def get_rating
-    reviews = self.reviews.where(:approved=>true).where(:for=>'product')
+    reviews = self.reviews.where(:approved=>true)
     calculate_average_rating(reviews)
   end
 end
