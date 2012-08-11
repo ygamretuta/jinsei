@@ -17,6 +17,7 @@ gem 'oauth2'
 gem 'thin'
 gem 'kaminari'
 gem 'best_in_place'
+gem 'searchlogic'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
