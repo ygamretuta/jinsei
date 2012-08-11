@@ -33,7 +33,7 @@ Jinsei::Application.routes.draw do
 
   resources :businesses do
     resources :branches, :except => [:show]
-    resources :reviews
+    resources :reviews, :except => [:show]
 
     resources :products do
       resources :reviews
