@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :businesses
 
+  before_validation :set_default_role
+
   devise :database_authenticatable,
          :registerable,
          :omniauthable,
@@ -81,4 +83,9 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  private
+    def set_default_role
+      self.role = 'user'
+    end
 end
