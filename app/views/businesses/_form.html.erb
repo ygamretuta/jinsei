@@ -2,6 +2,7 @@
 
     <legend>Business Form</legend>
     <%= f.input :name, :input_html => {:class => "span6", :size => 20}, :hint => "Enter Business Name" %>
+    <%= f.input :address, :input_html => {:class => "span6"} %>
     <%= f.input :photo, :as => :file %>
     <%= f.association :category %>
     <%= f.input :description, :input_html => {:class => 'span6', :rows => 5} %>

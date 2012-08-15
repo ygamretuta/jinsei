@@ -23,15 +23,19 @@ class BusinessesController < ApplicationController
   def create
     @user = current_user
     @business = @user.businesses.create(params[:business])
-    flash[:notice] = t("flash.actions.create.notice", {:resource_name => "Business"}) if @business.save
-    redirect_to user_businesses_path
+    if @business.save
+      flash[:notice] = t("flash.actions.create.notice", {:resource_name => "Business"})
+      redirect_to user_businesses_path
+    else
+      respond_with(@business)
+    end
   end
 
   def show
     if @business.approved?
       @categories = Category.all
       @products = @business.products.page params[:page]
-      @catalogs = @business.catalogs.all
+      @catalogs = @business.catalogs.limit(4)
       respond_with(@business)
     else
       render :text=>'Not Found', :status => 404
@@ -43,8 +47,12 @@ class BusinessesController < ApplicationController
   end
 
   def update
-    flash[:notice] = t("flash.actions.update.notice", {:resource_name => "Business"}) if @business.update_attributes(params[:business])
-    redirect_to user_businesses_path
+    if @business.update_attributes(params[:business])
+      flash[:notice] = t("flash.actions.update.notice", {:resource_name => "Business"})
+      redirect_to user_businesses_path
+    else
+      respond_with(@business)
+    end
   end
 
   def destroy

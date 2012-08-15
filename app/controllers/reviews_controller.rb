@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     end
 
     # TODO: Improve this code
-    if @product.nil?
+    if @product.blank?
       @reviews = @business.reviews
       @type = 'business'
     else
@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
     end
     # ENDTODO
 
-    if @product.nil?
+    if @product.blank?
       respond_with(@business, @reviews)
     else
       respond_with(@business, @product, @reviews)
@@ -35,10 +35,21 @@ class ReviewsController < ApplicationController
 
     if params.has_key?('product_id')
       @product = Product.find(params[:product_id])
+
+      if @product.is_reviewed_by(current_user)
+        flash[:notice] = t "app.reviewed_product"
+        redirect_to product_path(@product)
+      end
+
       @review = @product.reviews.build
       @form_resources = [@business, @product, @review]
       @type = 'product'
     else
+      if @business.is_reviewed_by(current_user)
+        flash[:notice] = t "app.reviewed_business"
+        redirect_to business_path(@business)
+      end
+
       @review = @business.reviews.build
       @form_resources = [@business, @review]
       @type = 'business'

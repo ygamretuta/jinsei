@@ -2,14 +2,8 @@
   <div class="span10">
     <%= render_cell :reviews, :index, {:business=>@business, :product=>@product, :reviews=>@reviews} %>
 
-    <% if @type == 'business' %>
-        <% if current_user and not @business.is_reviewed_by?(current_user) %>
-            <%= link_to 'Add Review', new_business_review_path(@business) %>
-        <% end %>
-    <% else %>
-        <% if current_user and not @business.is_reviewed_by?(current_user) %>
-            <%= link_to 'Add Review', new_business_product_review_path(@business, @product) %>
-        <% end %>
+    <% if current_user and not @business.is_reviewed_by?(current_user) %>
+        <%= link_to 'Add Review', new_business_review_path(@business) %>
     <% end %>
   </div>
 </div>

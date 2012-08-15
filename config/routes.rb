@@ -27,6 +27,7 @@ Jinsei::Application.routes.draw do
   match '/:business_id/:product_id/all_features', :to=>'features#all', :as => 'features_raw_list'
   match '/:business_id/:product_id/pending_reviews', :to => 'reviews#pending_product', :as => 'reviews_pending_product'
   match '/:business_id/all_branches', :to=>'branches#all', :as => 'branches_raw_list'
+  match '/search', :to => 'utils#search', :as => 'search'
 
   root :to => "businesses#index"
 

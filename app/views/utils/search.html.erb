@@ -1,0 +1,83 @@
+<div data-pjax-container>
+
+  <div class="row">
+    <div class="tabbable span12">
+      <ul class="nav nav-tabs">
+        <li <% if @t == 'b' or @t.blank? %> class="active"<% end %>>
+          <%= link_to 'Businesses', search_path(:t=>'b', :q=>@q, :p=>true), {:class=>'pjaxify', 'data-toggle'=>'tab'} %>
+        </li>
+
+        <li <% if @t == 'p' %> class="active"<% end %>>
+          <%= link_to 'Products', search_path(:t=>'p', :q=>@q, :p=>true), {:class=>'pjaxify', 'data-toggle' => 'tab'} %>
+        </li>
+
+        <li <% if @t == 'c' %> class="active"<% end %>>
+          <%= link_to 'Catalogs', search_path(:t=>'c', :q=>@q, :p=>true), {:class=>'pjaxify', 'data-toggle' => 'tab'} %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+    <% if @businesses %>
+        <div class="row">
+          <div class="span12">
+            <h2>Businesses Matching Results:</h2>
+
+            <% if  @businesses.count > 0%>
+                <ul class="list-bordered">
+                  <% @businesses.each do |b| %>
+                    <li>
+                      <h3><%= link_to b.name, business_path(b) %></h3>
+                      <p><%= b.address %></p>
+                    </li>
+                  <% end %>
+                </ul>
+            <% else %>
+                <p><%= t "No Businesses Found" %></p>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+
+    <% if @products %>
+        <div class="row">
+          <div class="span12">
+            <h2>Products Matching Results:</h2>
+
+            <% if  @products.count > 0%>
+                <ul class="list-bordered">
+                  <% @products.each do |p| %>
+                    <li>
+                      <h2><%= link_to p.name, product_path(p) %></h2>
+                      <p>Sold by <%= p.business.name %></p>
+                    </li>
+                  <% end %>
+                </ul>
+            <% else %>
+                <p><%= t "No Products Found" %></p>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+
+    <% if @catalogs %>
+        <div class="row">
+          <div class="span12">
+            <h2>Catalogs Matching Search:</h2>
+
+            <% if @catalogs.count > 0%>
+                <ul class="list-bordered">
+                  <% @catalogs.each do |c| %>
+                    <li>
+                      <h2><%= link_to c.name, business_catalog_path(c.business, c) %></h2>
+                      <p>under <%= link_to c.business.name, business_path(c.business) %></p>
+                    </li>
+                  <% end %>
+                </ul>
+            <% else %>
+                <p><%= t "No Catalogs Found" %></p>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+</div>

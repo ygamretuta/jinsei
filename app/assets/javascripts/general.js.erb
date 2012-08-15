@@ -12,7 +12,7 @@ $(function(){
         $(this).tab('show');
     });
 
-    $('a[data-toggle="tab"]').on('shown', function(e){
+    $('a[data-toggle="tab"]').not('.pjaxify').on('shown', function(e){
         var url = $(this).data('url');
         var segment = $(this).data('segment');
 
@@ -35,4 +35,6 @@ $(function(){
     $('.best_in_place').best_in_place();
 
     $('.dropdown-toggle').dropdown();
+
+    $('a.pjaxify').pjax('[data-pjax-container]');
 });

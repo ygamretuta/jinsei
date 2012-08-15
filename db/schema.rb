@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810063017) do
+ActiveRecord::Schema.define(:version => 20120813225305) do
 
   create_table "branches", :force => true do |t|
     t.string   "location"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20120810063017) do
     t.string   "slug"
     t.integer  "user_id"
     t.boolean  "approved",    :default => false
-    t.text     "address"
+    t.string   "address",     :default => ""
     t.integer  "category_id"
   end
 

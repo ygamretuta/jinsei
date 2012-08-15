@@ -3,9 +3,14 @@
     <li>
       <i class="icon-circle-arrow-right"></i>
       <% if user_signed_in? %>
-          <%= best_in_place_if @business.is_owned_by?(current_user), [@business, @product, f], :feature, :type => :textarea,
-            :ok_button => 'Save Changes', :activator => "#edit-feature-#{f.id}"%>
-          <i class="icon-pencil bip-edit" id="edit-feature-<%= f.id %>"></i>
+          <% if @business.is_owned_by?(current_user) %>
+              <%= best_in_place_if @business.is_owned_by?(current_user), [@business, @product, f], :feature, :type => :textarea,
+                :ok_button => 'Save Changes', :activator => "#edit-feature-#{f.id}"%>
+              <i class="icon-pencil bip-edit" id="edit-feature-<%= f.id %>"></i>
+
+          <% else %>
+            <%= f.feature %>
+          <% end %>
       <% else %>
           <%= f.feature %>
       <% end %>

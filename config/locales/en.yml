@@ -35,6 +35,8 @@ en:
     products_empty: "There are no products listed."
     reviews_empty: "There are no reviews available."
     catalogs_empty: "There are no catalogs available."
+    reviewed_product: "You have reviewed this product."
+    reviewed_business: "You have reviewed this business"
 
   time:
     formats:

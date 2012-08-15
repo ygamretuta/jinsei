@@ -17,7 +17,8 @@ gem 'oauth2'
 gem 'thin'
 gem 'kaminari'
 gem 'best_in_place'
-gem 'searchlogic'
+gem 'squeel'
+gem 'pjax_rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

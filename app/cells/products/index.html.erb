@@ -9,7 +9,7 @@
               <ul class="list_products_details details-box">
                 <li class="details">
                     <ul>
-                        <li><div class="rateit rating" data-rateit-value="<%= p.get_rating %>" data-rateit-preset="true" data-rateit-readonly="true"></div></li>
+                        <li><div class="rateit rating" data-rateit-value="<%= calculate_average_rating(p.reviews) %>" data-rateit-preset="true" data-rateit-readonly="true"></div></li>
                         <li>
                           <% if p.price %>
                             <span class="price"><%= p.price %></span>
