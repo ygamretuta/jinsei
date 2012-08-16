@@ -7,8 +7,6 @@ $(function(){
         }
     });
 
-    $.pjax.defaults.timeout = 10000
-
     $('#tabs_business_show').click(function(e){
         e.preventDefault();
         $(this).tab('show');
@@ -38,5 +36,5 @@ $(function(){
 
     $('.dropdown-toggle').dropdown();
 
-    $('a.pjaxify').pjax('[data-pjax-container]');
+    $('a.pjaxify').pjax('[data-pjax-container]', {timeout: 5000});
 });
