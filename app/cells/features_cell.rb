@@ -8,6 +8,6 @@ class FeaturesCell < Cell::Rails
     @product = args[:product]
     @features = @product.features
     return render if @features and @features.count > 0
-    render :view => :blank_list
+    render :text => "<p class='alert'>#{t "app.features_empty"}</p>"
   end
 end

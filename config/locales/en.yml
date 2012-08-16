@@ -33,6 +33,7 @@ en:
     businesses_empty: "There are no businesses listed."
     categories_empty: "There are no categories listed."
     products_empty: "There are no products listed."
+    features_empty: "There are no features listed."
     reviews_empty: "There are no reviews available."
     catalogs_empty: "There are no catalogs available."
     reviewed_product: "You have reviewed this product."
