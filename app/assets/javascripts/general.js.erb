@@ -7,6 +7,8 @@ $(function(){
         }
     });
 
+    $.pjax.defaults.timeout = 10000
+
     $('#tabs_business_show').click(function(e){
         e.preventDefault();
         $(this).tab('show');
