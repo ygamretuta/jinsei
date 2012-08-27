@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.8'
 gem 'mysql2'
 gem 'capistrano'
 gem 'simple_form'
@@ -21,13 +21,13 @@ gem 'squeel'
 gem 'pjax_rails'
 gem 'activeadmin'
 gem 'letter_opener', :group => :development
+gem 'sass-rails', '~> 3.2.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :assets do
   gem 'uglifier'
-  gem 'sass-rails', '~> 3.2.3'
   gem 'bootstrap-sass', '~> 2.0.3'
   gem 'coffee-rails', '~> 3.2.1'
 end
