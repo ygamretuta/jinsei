@@ -30,9 +30,9 @@ en:
   app:
     product_list_empty: "There are no products for this catalog."
     branches_empty: "This business has no other branches."
-    businesses_empty: "There are no businesses listed."
+    businesses_empty: "There are no businesses listed under this category."
     categories_empty: "There are no categories listed."
-    products_empty: "There are no products listed."
+    products_empty: "There are no products listed under this category."
     features_empty: "There are no features listed."
     reviews_empty: "There are no reviews available."
     catalogs_empty: "There are no catalogs available."

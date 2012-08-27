@@ -19,7 +19,7 @@ gem 'kaminari'
 gem 'best_in_place'
 gem 'squeel'
 gem 'pjax_rails'
-
+gem 'activeadmin'
 gem 'letter_opener', :group => :development
 
 # Bundle edge Rails instead:
