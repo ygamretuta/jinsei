@@ -20,6 +20,8 @@ gem 'best_in_place'
 gem 'squeel'
 gem 'pjax_rails'
 
+gem 'letter_opener', :group => :development
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

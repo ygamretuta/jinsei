@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
          :recoverable,
          :rememberable,
          :trackable,
-         :validatable
+         :validatable,
+         :confirmable
 
   attr_accessible :username,
                   :email,
