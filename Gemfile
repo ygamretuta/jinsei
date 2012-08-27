@@ -32,6 +32,10 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 end
 
+group :production do
+  gem 'redis-rails'
+end
+
 group :test, :development do
   gem 'ruby-debug19'
   gem 'rspec-rails'
