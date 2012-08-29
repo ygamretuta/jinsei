@@ -6,4 +6,5 @@ class Feature < ActiveRecord::Base
   validates_presence_of :feature
   validates_presence_of :product
   validates_associated :product
+  validates_length_of :feature, :in => 50..100
 end

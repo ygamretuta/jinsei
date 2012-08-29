@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin user]
 
+  def active_for_authentication?
+    super && !self.banned
+  end
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     require 'securerandom'
     username = SecureRandom.urlsafe_base64(10)

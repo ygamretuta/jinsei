@@ -8,8 +8,11 @@ class Product < ActiveRecord::Base
   has_many :features, :dependent => :destroy
 
   attr_accessible :description, :name, :photo, :catalog_id, :remove_photo, :in_stock, :category_id, :price
+
   validates_presence_of :name
   validates_presence_of :category
+  validates_length_of :description, :in => 50..100, :allow_blank => true
+  validates_length_of :name, :maximum => 255
 
   before_create :unique_to_business
 

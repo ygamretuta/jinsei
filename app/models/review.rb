@@ -9,6 +9,7 @@ class Review < ActiveRecord::Base
   validates_numericality_of :rating
   validates_numericality_of :user_id
   validates_presence_of :user_id
+  validates_length_of :text, :in=> 50..300
 
   validate :rating_less_than_equal_5
 

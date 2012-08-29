@@ -4,4 +4,5 @@ class Branch < ActiveRecord::Base
   belongs_to :business
 
   validates_presence_of :location
+  validates_length_of :location, :maximum=>255
 end

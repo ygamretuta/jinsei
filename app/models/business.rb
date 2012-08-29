@@ -1,9 +1,11 @@
 class Business < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :category
+  validates_length_of :description, :in => 50..100, :allow_blank => true
+  validates_length_of :name, :maximum => 255
 
   mount_uploader :photo, PhotoUploader
-  attr_accessible :name, :description, :photo, :remove_photo, :category_id, :rating, :address
+  attr_accessible :name, :description, :photo, :remove_photo, :category_id, :address
 
   has_many :catalogs, :dependent => :destroy
   has_many :products, :dependent => :destroy
