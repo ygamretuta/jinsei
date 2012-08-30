@@ -3,6 +3,7 @@ class Business < ActiveRecord::Base
   validates_presence_of :category
   validates_length_of :description, :in => 50..100, :allow_blank => true
   validates_length_of :name, :maximum => 255
+  validate :register_every_24_hours
 
   mount_uploader :photo, PhotoUploader
   attr_accessible :name, :description, :photo, :remove_photo, :category_id, :address
@@ -18,6 +19,8 @@ class Business < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  after_save :assign_user_last_registered
+
   def is_owned_by?(user)
     self.user == user
   end
@@ -28,5 +31,16 @@ class Business < ActiveRecord::Base
 
   def profile
     @user = current_user
+  end
+
+  def register_every_24_hours
+    if ! self.user.last_business_registered.blank? and self.user.last_business_registered < 24.hours.ago
+      errors.add(:name, :less_than_24)
+    end
+  end
+
+  def assign_user_last_registered
+    self.user.last_business_registered = Time.now
+    self.user.save
   end
 end

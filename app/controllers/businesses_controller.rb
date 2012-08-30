@@ -3,6 +3,7 @@ class BusinessesController < ApplicationController
   before_filter :authenticate_user!, :except=>[:show,:index, :category]
   before_filter :get_business, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
+  before_filter :greater_than_24, :only => [:new]
   load_and_authorize_resource
 
   def get_business
@@ -71,4 +72,12 @@ class BusinessesController < ApplicationController
     @category = Category.find(params[:category_id])
     @businesses = @category.businesses.page params[:page]
   end
+
+  private
+    def greater_than_24
+      if ! current_user.last_business_registered.blank? and current_user.last_business_registered > 24.hours.ago
+        flash[:notice] = t "app.less_than_24"
+        redirect_to user_businesses_path
+      end
+    end
 end

@@ -19,6 +19,11 @@ en:
           attributes:
             name:
               taken: "Product name is already taken for this business"
+
+        business:
+          attributes:
+            name:
+              less_than_24: "You can only register businesses every 24 hours"
       messages:
         taken: "is already taken"
     models:
@@ -38,6 +43,7 @@ en:
     catalogs_empty: "There are no catalogs available."
     reviewed_product: "You have reviewed this product."
     reviewed_business: "You have reviewed this business"
+    less_than_24: "You can only register businesses every 24 hours"
 
   time:
     formats:
