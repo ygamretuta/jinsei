@@ -41,7 +41,7 @@
     <h2><%= @product.name %></h2>
     <p class="price">
       <% if @product.price and not @product.call_for_pricing? %>
-          <span class="price"><%= @product.price %> <%= @product.business.currency %></span>
+          <span class="price"><%= number_to_currency(@product.price, :unit=>'') %> <%= @product.business.currency %></span>
       <% elsif @product.price and @product.call_for_pricing? %>
           <span class="price"><%= t "app.call_for_pricing" %></span>
       <% else %>
