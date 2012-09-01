@@ -11,10 +11,12 @@
                     <ul>
                         <li><div class="rateit rating" data-rateit-value="<%= calculate_average_rating(p.reviews) %>" data-rateit-preset="true" data-rateit-readonly="true"></div></li>
                         <li>
-                          <% if p.price %>
-                            <span class="price"><%= p.price %></span>
+                          <% if p.price and not p.call_for_pricing %>
+                            <span class="price"><%= p.price %> <%= p.business.currency %></span>
+                          <% elsif p.call_for_pricing and p.price %>
+                              <span class="price"><%= t "app.call_for_pricing" %></span>
                           <% else %>
-                            <span class="price-not-available"><%= t 'Price is not Available' %></span>
+                            <span class="price-not-available"><%= t 'app.price_not_available' %></span>
                           <% end %>
                         </li>
                     </ul>

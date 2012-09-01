@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120830223924) do
+ActiveRecord::Schema.define(:version => 20120901135128) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20120830223924) do
     t.boolean  "approved",    :default => false
     t.string   "address",     :default => ""
     t.integer  "category_id"
+    t.string   "currency",    :default => "PHP"
   end
 
   add_index "businesses", ["slug"], :name => "index_businesses_on_slug", :unique => true
@@ -102,14 +103,15 @@ ActiveRecord::Schema.define(:version => 20120830223924) do
     t.string   "name"
     t.text     "description"
     t.integer  "business_id"
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
     t.string   "slug"
     t.string   "photo"
     t.integer  "catalog_id"
-    t.boolean  "in_stock",                                   :default => true
-    t.decimal  "price",       :precision => 10, :scale => 0
+    t.boolean  "in_stock",                                        :default => true
+    t.decimal  "price",            :precision => 10, :scale => 0
     t.integer  "category_id"
+    t.boolean  "call_for_pricing",                                :default => false
   end
 
   add_index "products", ["business_id"], :name => "index_products_on_business_id"

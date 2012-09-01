@@ -52,11 +52,11 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :medium do
-    process :resize_to_fill => [115,115]
+    process :resize_to_limit => [115,115]
   end
 
   version :large do
-    process :resize_to_fill => [353, 300]
+    process :resize_to_limit => [353, 300]
   end
 
   def filename

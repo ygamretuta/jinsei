@@ -139,6 +139,13 @@ GEM
     mime-types (1.19)
     mini_magick (3.4)
       subexec (~> 0.2.1)
+    money (5.0.0)
+      i18n (~> 0.4)
+      json
+    money-rails (0.5.0)
+      activesupport (~> 3.0)
+      money (~> 5.0.0)
+      railties (~> 3.0)
     multi_json (1.3.6)
     multipart-post (1.1.5)
     mysql2 (0.3.11)
@@ -275,7 +282,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   best_in_place
-  bootstrap-sass (~> 2.0.3)
+  bootstrap-sass
   cancan
   capistrano
   carrierwave
@@ -292,6 +299,7 @@ DEPENDENCIES
   kaminari
   letter_opener
   mini_magick
+  money-rails
   mysql2
   oauth2
   omniauth

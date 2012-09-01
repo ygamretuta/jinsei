@@ -5,6 +5,7 @@
     <%= f.input :address, :input_html => {:class => "span6"} %>
     <%= f.input :photo, :as => :file %>
     <%= f.association :category %>
+    <%= f.input :currency, :as => :select, :collection => all_currencies %>
     <%= f.input :description, :input_html => {:class => 'span6', :rows => 5} %>
 
     <% unless @business.photo.blank? %>

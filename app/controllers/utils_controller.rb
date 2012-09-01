@@ -1,6 +1,7 @@
 class UtilsController < ApplicationController
 
   def search
+    q = params[:q]
     @q = params[:q]
     @t = params[:t]
 

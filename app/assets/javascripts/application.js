@@ -6,5 +6,8 @@
  *= require jquery.pjax
  *= require jquery_ujs
  *= require_self
+ *= require bootstrap-dropdown
+ *= require bootstrap-alert
+ *= require bootstrap-tab
  *= require_tree .
  */

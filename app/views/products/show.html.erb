@@ -39,19 +39,20 @@
 <div class="row">
   <div class="span5">
     <h2><%= @product.name %></h2>
+    <p class="price">
+      <% if @product.price and not @product.call_for_pricing? %>
+          <span class="price"><%= @product.price %> <%= @product.business.currency %></span>
+      <% elsif @product.price and @product.call_for_pricing? %>
+          <span class="price"><%= t "app.call_for_pricing" %></span>
+      <% else %>
+          <% t "app.price_not_available" %>
+      <% end %>
+    </p>
     <blockquote><p><%= @product.description %></p></blockquote>
   </div>
 
   <div class="span5">
     <%= image_tag(@product.photo.large.url) %>
-  </div>
-
-  <div class="span2">
-    <% if @product.price %>
-        <%= @product.price %>
-    <% else %>
-        <% t 'Price N/A' %>
-    <% end %>
   </div>
 </div>
 

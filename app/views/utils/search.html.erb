@@ -48,7 +48,7 @@
                 <ul class="list-bordered">
                   <% @products.each do |p| %>
                     <li>
-                      <h2><%= link_to p.name, product_path(p) %></h2>
+                      <h2><%= link_to p.name, business_product_path(p.business, p) %></h2>
                       <p>Sold by <%= p.business.name %></p>
                     </li>
                   <% end %>
