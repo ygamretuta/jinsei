@@ -35,6 +35,8 @@ end
 
 group :production do
   gem 'redis-rails'
+  gem 'yui-compressor'
+  gem 'closure-compiler'
 end
 
 group :test, :development do

@@ -47,4 +47,10 @@ Jinsei::Application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.cache_store = :redis_store
+
+  config.assets.compress = true
+
+  config.assets.css_compressor = :yui
+
+  config.assets.js_compressor = :closure
 end
