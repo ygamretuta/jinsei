@@ -2,9 +2,9 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :is_staff
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
 
-  ROLES = %w[superuser staff]
+  ROLES = %w(superuser staff)
 
   after_create {|admin| admin.send_reset_password_instructions}
   before_destroy :raise_if_last

@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path
   end
 
+  def current_ability
+    @current_ability ||= AdminAbility.new(current_admin_user)
+  end
+
   private
     def record_not_found
       render :text => "404 Not Found Baby!", :status => 404

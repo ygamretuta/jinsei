@@ -1,6 +1,8 @@
 ActiveAdmin.register AdminUser do
 
-  menu :if => proc { ! current_admin_user.is_staff? }
+  menu :if => proc { current_admin_user.role == 'superuser' }
+
+  controller.authorize_resource
 
   filter :email
   filter :last_sign_in_at
@@ -17,7 +19,6 @@ ActiveAdmin.register AdminUser do
     f.inputs "Admin Details" do
       f.input :email
       f.input :password
-      f.input :is_staff
     end
     f.buttons
   end

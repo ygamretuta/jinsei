@@ -24,6 +24,7 @@ gem 'letter_opener', :group => :development
 gem 'sass-rails', '~> 3.2.3'
 gem 'bootstrap-sass'
 gem 'money-rails'
+gem 'activeadmin-cancan'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

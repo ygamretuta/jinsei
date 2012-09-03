@@ -1,6 +1,10 @@
 ActiveAdmin.register Business do
   filter :name
 
+  controller.authorize_resource
+
+  actions :all, :except => :destroy,  :if => proc {current_admin_user.cannot? :destroy, business}
+
   controller do
     def scoped_collection
       Business.includes(:products, :catalogs)
