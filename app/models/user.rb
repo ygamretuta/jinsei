@@ -28,20 +28,18 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    require 'securerandom'
-    username = SecureRandom.urlsafe_base64(10)
-
-    user = User.where(:provider=>auth.provider, :uid=>auth.uid).first
-
     unless user
-      user = User.create!(
-        username: username,
+      user = User.new(
+        username: auth.info.first_name,
         provider: auth.provider,
         uid: auth.uid,
         password: Devise.friendly_token[0,20],
         email: auth.info.email,
         role: "user"
       )
+
+      user.skip_confirmation!
+      user.save
     end
 
     user
