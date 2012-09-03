@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::UnknownController, :with => :render_404
     rescue_from ActionController::UnknownAction, :with => :render_404
     rescue_from ActiveRecord::RecordNotFound, :with => :render_404
-    rescue_from ActiveRecord::RecordInvalid, :with => :render_404
+    rescue_from ActiveRecord::RecordInvalid, :with => :render_500
   end
 
   private
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def render_404(exception)
+    def render_500(exception)
       @error = exception
       respond_to do |format|
         format.html {render template:"errors/error_500", layout:"layouts/application", status:500}
