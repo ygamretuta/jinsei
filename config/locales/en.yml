@@ -48,6 +48,8 @@ en:
     call_for_pricing: "Call For Pricing"
     landing_message: "Online presence for your businesses, made easy."
     landing_action_message: "With Jinsei, You Can: "
+    exception_message: "Something went wrong and our master has been notified and he will fix it for you ASAP!"
+    report_issue: "Do you have a Github account? Then please report what happened!"
 
   time:
     formats:

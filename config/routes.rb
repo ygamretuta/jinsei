@@ -1,5 +1,11 @@
 Jinsei::Application.routes.draw do
+
   ActiveAdmin.routes(self)
+
+
+  unless Rails.application.config.consider_all_requests_local
+      match '*not_found', to: 'errors#error_404'
+  end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
@@ -49,4 +55,6 @@ Jinsei::Application.routes.draw do
       resources :products
     end
   end
+
+  match '*not_found', to: 'errors#error_404'
 end
