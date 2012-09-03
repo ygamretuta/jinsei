@@ -28,3 +28,4 @@ uploads/
 Capfile
 .sass-cache/
 .DS_Store
+config/database.yml
