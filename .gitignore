@@ -27,3 +27,4 @@ tmp/
 uploads/
 Capfile
 .sass-cache/
+.DS_Store

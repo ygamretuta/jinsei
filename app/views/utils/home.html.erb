@@ -1,0 +1,10 @@
+<div id="landing">
+  <h1 class="home-header">Jinsei</h1>
+  <p class="landing-p"><%= t "app.landing_message" %></p>
+
+  <%= form_tag('/search?t=b', {:method => 'get'}) do %>
+      <%= text_field_tag :q, nil, {:class => 'search-query', :placeholder => "Find Products or Businesses", :id=>"landing-search"} %>
+  <% end %>
+
+  <p id="landing-register"><%= link_to "Want To List Your Business? Sign Up!", register_path, {:class=>"btn btn-primary btn-large landing-button"} %></p>
+</div>

@@ -15,4 +15,8 @@ class UtilsController < ApplicationController
       @catalogs = Catalog.where{name =~ "%#{q}%"}
     end
   end
+
+  def home
+
+  end
 end

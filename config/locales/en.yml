@@ -46,6 +46,8 @@ en:
     less_than_24: "You can only register businesses every 24 hours"
     price_not_available: "Price is not available"
     call_for_pricing: "Call For Pricing"
+    landing_message: "Online presence for your businesses, made easy."
+    landing_action_message: "With Jinsei, You Can: "
 
   time:
     formats:
