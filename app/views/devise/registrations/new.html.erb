@@ -1,18 +1,25 @@
-<h2>Sign up</h2>
+<div class="row-fluid">
+  <div class="span6">
+    <h2><%= t "app.signup_message" %></h2>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="inputs">
-    <%= f.input :username, :required=>true, :autofocus=>true %>
-    <%= f.input :email, :required => true %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :password_confirmation, :required => true %>
+      <div class="inputs">
+        <%= f.input :username, :required=>true, :autofocus=>true %>
+        <%= f.input :email, :required => true %>
+        <%= f.input :password, :required => true %>
+        <%= f.input :password_confirmation, :required => true %>
+      </div>
+
+      <div class="actions">
+        <%= f.button :submit, "Sign up", :class=>'btn-primary' %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= f.button :submit, "Sign up", :class=>'btn-primary' %>
+  <div class="span6">
+    <h2><%= t "app.devise_sharedlinks_header" %></h2>
+    <%= render :partial => "devise/shared/links" %>
   </div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+</div>

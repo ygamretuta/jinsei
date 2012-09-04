@@ -51,6 +51,9 @@ en:
     exception_message: "Something went wrong and our master has been notified and he will fix it for you ASAP!"
     report_issue: "Do you have a Github account? Then please report what happened!"
     oauth_error_message: "There was a problem signing you in with the given provider. Please try again later. Thanks!"
+    signup_message: "Fill in the form below to create a new account:"
+    devise_sharedlinks_header: "You can also:"
+    signin_message: "Fill in the form below to log in:"
 
   time:
     formats:

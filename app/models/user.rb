@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :businesses
+  has_many :reviews, :dependent => :destroy
 
   before_validation :set_default_role
 

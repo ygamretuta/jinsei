@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   belongs_to :catalog
   belongs_to :category
 
-  has_many :reviews, :as => :reviewable
+  has_many :reviews, :as => :reviewable, :dependent => :destroy
   has_many :features, :dependent => :destroy
 
   attr_accessible :description, :name, :photo, :catalog_id, :remove_photo, :in_stock, :category_id, :price,

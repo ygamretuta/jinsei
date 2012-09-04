@@ -11,7 +11,7 @@ class Business < ActiveRecord::Base
   has_many :catalogs, :dependent => :destroy
   has_many :products, :dependent => :destroy
   has_many :branches, :dependent => :destroy
-  has_many :reviews, :as => :reviewable
+  has_many :reviews, :as => :reviewable, :dependent => :destroy
 
   belongs_to :user
   belongs_to :category

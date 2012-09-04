@@ -30,7 +30,10 @@
                 <% if b.reviews.count > 0%>
                     <blockquote>
                       <p><%= truncate b.reviews.last.text, :length => 120 %></p>
-                      <small><%= b.reviews.first.user.username %></small>
+
+                      <% if b.reviews.first.user %>
+                        <small><%= b.reviews.first.user.username %></small>
+                      <% end %>
                     </blockquote>
                 <% end %>
               </li>

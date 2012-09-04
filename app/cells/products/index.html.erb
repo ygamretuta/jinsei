@@ -6,7 +6,7 @@
 
           <div class="name-and-details">
               <h2><%= link_to p.name, product_name_path(p.business.id, p) %></h2>
-              <ul class="list_products_details details-box">
+              <ul class="list_products_details details-box clearfix">
                 <li class="details">
                     <ul>
                         <li><div class="rateit rating" data-rateit-value="<%= calculate_average_rating(p.reviews) %>" data-rateit-preset="true" data-rateit-readonly="true"></div></li>
@@ -22,7 +22,7 @@
                     </ul>
                 </li>
 
-                <li>
+                <li class="details">
                   <ul class="pull-left product-details">
                     <li>
                       <span class="text-category"><%= p.category.name %>:</span>
