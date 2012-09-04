@@ -39,4 +39,10 @@ $(function(){
     $('a.pjaxify').pjax('[data-pjax-container]', {timeout: 5000});
 
     $('.alert').alert();
+
+    $('.form-button').button();
+
+    $('.form-button').click(function(){
+        $(this).button('loading');
+    });
 });

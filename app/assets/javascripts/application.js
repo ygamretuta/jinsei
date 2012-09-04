@@ -9,5 +9,6 @@
  *= require bootstrap-dropdown
  *= require bootstrap-alert
  *= require bootstrap-tab
+ *= require bootstrap-button
  *= require_tree .
  */
