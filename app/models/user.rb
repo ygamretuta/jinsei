@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
     unless user
       user = User.new(
-        username: auth.info.name.underscore,
+        username: auth.info.name.gsub(/\s+/, '').downcase,
         provider: auth.provider,
         uid: auth.uid,
         password: Devise.friendly_token[0,20],
