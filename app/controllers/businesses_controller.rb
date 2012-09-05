@@ -4,7 +4,6 @@ class BusinessesController < ApplicationController
   before_filter :get_business, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
   before_filter :greater_than_24, :only => [:new]
-  load_and_authorize_resource
 
   def get_business
     @business = Business.find(params[:id])

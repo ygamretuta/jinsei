@@ -54,6 +54,10 @@ en:
     signup_message: "Fill in the form below to create a new account:"
     devise_sharedlinks_header: "You can also:"
     signin_message: "Fill in the form below to log in:"
+    not_allowed: "You shall not pass!"
+    not_allowed_sub: "because the page you accessed is restricted"
+    bring_me_back: "Take me back!"
+    owned_cannot_review: "You cannot review a product of a business you own."
 
   time:
     formats:

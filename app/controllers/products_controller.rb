@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :authenticate_user!, :except =>[:index, :show, :all, :category]
   layout proc {|controller| controller.request.xhr? ? false : "application"}
-  load_and_authorize_resource
 
   before_filter :get_embedded_business
   before_filter :require_owner, :only => [:new, :create, :edit, :update, :destroy]

@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
       object = instance_variable_get("@business")
       unless current_user && object.is_owned_by?(current_user)
         respond_to do |format|
-          format.html{render :text => 'Not Allowed', :status=>:forbidden}
+          format.html{render template:"errors/error_403",  layout:"layouts/application", :status=>:forbidden}
         end
       end
     end

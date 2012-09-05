@@ -1,6 +1,4 @@
 class CatalogsController < ApplicationController
-  load_and_authorize_resource
-
   def index
     @business = Business.find(params[:business_id])
     @catalogs = @business.catalogs.page params[:page]

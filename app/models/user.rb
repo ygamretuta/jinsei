@@ -4,6 +4,14 @@ class User < ActiveRecord::Base
 
   before_validation :set_default_role
 
+  validates :username, :presence=>true, :uniqueness => true
+  validates_length_of :username, :in => 6..40
+  validates :email, :presence => true, :uniqueness => true
+  validates :password, :presence => true
+  validates_length_of :password, :in => 6..40
+  validates_confirmation_of :password
+  validates_presence_of :password_confirmation
+
   devise :database_authenticatable,
          :registerable,
          :omniauthable,

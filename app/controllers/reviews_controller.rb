@@ -33,10 +33,15 @@ class ReviewsController < ApplicationController
   def new
     @business = Business.find(params[:business_id])
 
+    if @business.is_owned_by?(current_user)
+      flash[:notice] = t "app.owned_cannot_review"
+      redirect_to :back
+    end
+
     if params.has_key?('product_id')
       @product = Product.find(params[:product_id])
 
-      if @product.is_reviewed_by(current_user)
+      if @product.is_reviewed_by?(current_user)
         flash[:notice] = t "app.reviewed_product"
         redirect_to product_path(@product)
       end
@@ -45,7 +50,7 @@ class ReviewsController < ApplicationController
       @form_resources = [@business, @product, @review]
       @type = 'product'
     else
-      if @business.is_reviewed_by(current_user)
+      if @business.is_reviewed_by?(current_user)
         flash[:notice] = t "app.reviewed_business"
         redirect_to business_path(@business)
       end
@@ -60,6 +65,11 @@ class ReviewsController < ApplicationController
 
 def create
   @business = Business.find(params[:business_id])
+
+  if @business.is_owned_by?(current_user)
+    flash[:notice] = t "app.owned_cannot_review"
+    redirect_to :back
+  end
 
   if params.has_key?('product_id')
     @product = Product.find(params[:product_id])
