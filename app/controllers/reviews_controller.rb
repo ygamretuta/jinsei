@@ -43,7 +43,8 @@ class ReviewsController < ApplicationController
 
       if @product.is_reviewed_by?(current_user)
         flash[:notice] = t "app.reviewed_product"
-        redirect_to product_path(@product)
+        redirect_to business_product_path(@business, @product)
+        return
       end
 
       @review = @product.reviews.build
@@ -53,6 +54,7 @@ class ReviewsController < ApplicationController
       if @business.is_reviewed_by?(current_user)
         flash[:notice] = t "app.reviewed_business"
         redirect_to business_path(@business)
+        return
       end
 
       @review = @business.reviews.build

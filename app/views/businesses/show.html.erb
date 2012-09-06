@@ -2,9 +2,9 @@
 
 <p><%= @business.description %></p>
 
-<% if current_user and @business.is_owned_by?(current_user) %>
-    <div class="subnav">
-        <ul class="list_business_actions nav nav-pills">
+<div class="subnav">
+    <ul class="list_business_actions nav nav-pills">
+    <% if current_user and @business.is_owned_by?(current_user) %>
           <li><%= link_to "Edit", edit_business_path(@business) %></li>
           <li>
             <%= link_to "Delete", business_path(@business),
@@ -20,19 +20,24 @@
           </li>
 
           <li>
-            <%= link_to "All Catalogs", business_catalogs_path(@business) %>
-          </li>
-
-          <li>
             <%= link_to "Manage Branches", business_branches_path(@business) %>
           </li>
 
           <li>
             <%= link_to "Manage Reviews", business_reviews_path(@business) %>
           </li>
-        </ul>
-    </div>
-<% end %>
+    <% end %>
+
+    <% if current_user and not @business.is_reviewed_by?(current_user) %>
+      <li><%= link_to 'Review', new_business_review_path(@business) %></li>
+    <% end  %>
+
+        <li>
+          <%= link_to "All Catalogs", business_catalogs_path(@business) %>
+        </li>
+    </ul>
+</div>
+
 
 <div class="row">
   <div class="tabbable span10">

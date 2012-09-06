@@ -29,7 +29,7 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def is_reviewed_by(user)
+  def is_reviewed_by?(user)
     return self.reviews.where(:user_id=>user.id).count > 0
   end
 
