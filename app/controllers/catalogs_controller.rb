@@ -48,7 +48,10 @@ class CatalogsController < ApplicationController
   end
 
   def destroy
+    @business = Business.find(params[:business_id])
     @catalog = Catalog.find(params[:id])
     @catalog.destroy
+    flash[:notice] = t "app.success_delete"
+    redirect_to business_path(@business)
   end
 end

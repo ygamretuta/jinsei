@@ -60,6 +60,8 @@ en:
     owned_cannot_review: "You cannot review a product of a business you own."
     instock: "Available"
     outstock: "Out of Stock"
+    confirm_delete: "Are you sure you want to delete this?"
+    success_delete: "Successfully deleted record!"
 
   time:
     formats:
