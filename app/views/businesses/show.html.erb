@@ -28,7 +28,7 @@
           </li>
     <% end %>
 
-    <% if current_user and not @business.is_reviewed_by?(current_user) %>
+    <% if current_user and not @business.is_owned_by?(current_user) and not @business.is_reviewed_by?(current_user)%>
       <li><%= link_to 'Review', new_business_review_path(@business) %></li>
     <% end  %>
 

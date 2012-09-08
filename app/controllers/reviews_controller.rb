@@ -34,8 +34,13 @@ class ReviewsController < ApplicationController
     @business = Business.find(params[:business_id])
 
     if @business.is_owned_by?(current_user)
-      flash[:notice] = t "app.owned_cannot_review"
+      if params.has_key?('product_id')
+        flash[:notice] = t "app.owned_cannot_review_product"
+      else
+        flash[:notice] = t "app.owned_cannot_review_business"
+      end
       redirect_to :back
+      return
     end
 
     if params.has_key?('product_id')
