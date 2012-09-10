@@ -10,5 +10,6 @@
  *= require bootstrap-alert
  *= require bootstrap-tab
  *= require bootstrap-button
+ *= require jquery.sausage.min
  *= require_tree .
  */

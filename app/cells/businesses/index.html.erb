@@ -1,46 +1,40 @@
-<%= paginate @businesses %>
+<% @businesses.each do |b| %>
+   <li class="clearfix">
+     <% unless b.photo.blank? %>
+      <div class="photo_index_business photo-medium"><%= image_tag(b.photo.medium.url)%></div>
+     <% end %>
 
-<ul class="list_business list-bordered">
-    <% @businesses.each do |b| %>
-       <li class="clearfix">
-         <% unless b.photo.blank? %>
-          <div class="photo_index_business photo-medium"><%= image_tag(b.photo.medium.url)%></div>
-         <% end %>
-
-         <div class="name-and-details">
-            <h2><%= link_to b.name, business_name_path(b)  %></h2>
-            <ul class="clearfix details-box" >
-              <li class="details">
-                <ul>
-                  <li>
-                    <div class="rateit rating" data-rateit-value="<%= calculate_average_rating(b.reviews) %>" data-rateit-preset="true" data-rateit-readonly="true"></div>
-                  </li>
-
-                  <li>
-                    Main Branch:<%= b.address %>
-                  </li>
-
-                  <li>
-                    <%= link_to 'View All Branches' %> | <%= link_to 'View Products', business_name_path(b) %>
-                  </li>
-                </ul>
+     <div class="name-and-details">
+        <h2><%= link_to b.name, business_name_path(b)  %></h2>
+        <ul class="clearfix details-box" >
+          <li class="details">
+            <ul>
+              <li>
+                <div class="rateit rating" data-rateit-value="<%= calculate_average_rating(b.reviews) %>" data-rateit-preset="true" data-rateit-readonly="true"></div>
               </li>
 
-              <li class="details">
-                <% if b.reviews.count > 0%>
-                    <blockquote>
-                      <p><%= truncate b.reviews.last.text, :length => 120 %></p>
+              <li>
+                Main Branch:<%= b.address %>
+              </li>
 
-                      <% if b.reviews.first.user %>
-                        <small><%= b.reviews.first.user.username %></small>
-                      <% end %>
-                    </blockquote>
-                <% end %>
+              <li>
+                <%= link_to 'View All Branches' %> | <%= link_to 'View Products', business_name_path(b) %>
               </li>
             </ul>
-         </div>
-       </li>
-    <% end %>
-</ul>
+          </li>
 
-<%= paginate @businesses %>
+          <li class="details">
+            <% if b.reviews.count > 0%>
+                <blockquote>
+                  <p><%= truncate b.reviews.last.text, :length => 120 %></p>
+
+                  <% if b.reviews.first.user %>
+                    <small><%= b.reviews.first.user.username %></small>
+                  <% end %>
+                </blockquote>
+            <% end %>
+          </li>
+        </ul>
+     </div>
+   </li>
+<% end %>

@@ -1,12 +1,12 @@
 class Business < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :category
-  validates_length_of :description, :in => 50..100, :allow_blank => true
+  validates_length_of :description, :in => 50..600, :allow_blank => true
   validates_length_of :name, :maximum => 255
   validate :register_every_24_hours
 
   mount_uploader :photo, PhotoUploader
-  attr_accessible :name, :description, :photo, :remove_photo, :category_id, :address
+  attr_accessible :name, :description, :photo, :remove_photo, :category_id, :address, :approved
 
   has_many :catalogs, :dependent => :destroy
   has_many :products, :dependent => :destroy
@@ -19,7 +19,7 @@ class Business < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  after_save :assign_user_last_registered
+  after_create :assign_user_last_registered
 
   def is_owned_by?(user)
     self.user == user

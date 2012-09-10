@@ -1,0 +1,32 @@
+<script type="text/javascript">
+(function() {
+  var page = 1,
+      loading = false;
+
+  function nearBottomOfPage() {
+    return $(window).scrollTop() > $(document).height() - $(window).height() - 200;
+  }
+
+  $(window).scroll(function(){
+
+    if ($('<%= container %>').length){
+        if (loading) {
+          return;
+        }
+
+        if(nearBottomOfPage()) {
+          loading=true;
+          page++;
+
+          $('div#loadmoreajaxloader').show();
+          $('<div/>').load('<%= segment %>?page='+page + ' .infiniteitem', function(){
+              $('<%= container %>').append($(this).html());
+              $('div#loadmoreajaxloader').hide();
+          });
+        }
+    }
+  });
+
+  $(window).sausage();
+}());
+</script>

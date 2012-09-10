@@ -9,10 +9,10 @@ class ProductsController < ApplicationController
     @business = Business.find_by_slug(params[:business_id])
     if params.has_key?(:catalog_id)
       @catalog = Catalog.find(params[:catalog_id])
-      @products = @catalog.products.page(params[:page]).per(5)
+      @products = @catalog.products.page(params[:page])
       respond_with(@business, @catalog, @products)
     else
-      @products = @business.products.page(params[:page]).per(5)
+      @products = @business.products.page(params[:page])
       respond_with(@business, @products)
     end
   end
@@ -74,6 +74,6 @@ class ProductsController < ApplicationController
     @categories = Category.all
     @type = 'product'
     collection = Product.includes(:business).where('businesses.approved = ?', true).all
-    @products = Kaminari.paginate_array(collection).page(params[:page]).per(5)
+    @products = Kaminari.paginate_array(collection).page(params[:page])
   end
 end

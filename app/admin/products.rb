@@ -1,7 +1,7 @@
 ActiveAdmin.register Product do
-
-  controller.authorize_resource
-  actions :all, :except => :destroy,  :if => proc {current_admin_user.cannot? :destroy, product}
+  controller do
+    authorize_resource
+  end
 
   filter :name
 

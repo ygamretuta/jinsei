@@ -5,6 +5,12 @@ class CatalogsController < ApplicationController
     respond_with(@business, @catalogs)
   end
 
+  def all
+    @business = Business.find(params[:business_id])
+    @catalogs = @business.catalogs.page params[:page]
+    respond_with(@business, @catalogs)
+  end
+
   def show
     @business = Business.find(params[:business_id])
     @catalog = @business.catalogs.find(params[:id])

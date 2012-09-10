@@ -3,8 +3,6 @@ ActiveAdmin.register Business do
 
   controller.authorize_resource
 
-  actions :all, :except => :destroy,  :if => proc {current_admin_user.cannot? :destroy, business}
-
   controller do
     def scoped_collection
       Business.includes(:products, :catalogs)
@@ -23,6 +21,7 @@ ActiveAdmin.register Business do
       f.input :category, :as => :select, :collection => Category.all
       f.input :address
       f.input :approved, :as => :boolean
+      f.input :description
     end
 
     f.buttons

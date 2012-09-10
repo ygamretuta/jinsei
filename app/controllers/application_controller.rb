@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
   respond_to :html, :js, :json
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = exception.message
-    redirect_to new_user_session_path
+    render_403(exception)
   end
 
   def current_ability
@@ -37,6 +36,14 @@ class ApplicationController < ActionController::Base
         format.all {render nothing:true, status:500}
       end
     end
+
+    def render_403(exception)
+      respond_to do |format|
+        format.html {render template:"errors/error_403", layout:"layouts/application", :status=>:forbidden}
+        format.all {render nothing:true, status:403}
+      end
+    end
+
 
   protected
     def require_owner
