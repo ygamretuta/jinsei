@@ -28,12 +28,13 @@ Jinsei::Application.routes.draw do
   match '/profile', :to=>'users#show'
   match '/my-businesses', :to => 'users#businesses', :as => 'user_businesses'
   match '/b/category/:category_id', :to => 'businesses#category', :as => 'category_business'
-  match '/:business_id/:product_id/pending_reviews', :to => 'reviews#pending_product', :as => 'reviews_pending_product'
 
   match '/products', :to => 'products#all', :as => 'products'
   match '/:business_id/:product_id/all_features', :to=>'features#all', :as => 'features_raw_list'
   match '/:business_id/all_branches', :to=>'branches#all', :as => 'branches_raw_list'
   match '/:business_id/all_catalogs', :to => 'catalogs#all', :as => 'catalogs_raw_list'
+
+  match '/report/review/:id', :to => 'reviews#report', :as => 'report_review'
 
   match '/search', :to => 'utils#search', :as => 'search'
 

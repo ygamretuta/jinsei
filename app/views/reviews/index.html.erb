@@ -1,5 +1,15 @@
 <div class="row">
   <div class="span10">
-    <%= render_cell :reviews, :index, {:business=>@business, :product=>@product, :reviews=>@reviews} %>
+    <ul class="list-bordered" id="infinitereviews">
+        <%= render_cell :reviews, :index, {:business=>@business, :product=>@product, :reviews=>@reviews} %>
+    </ul>
   </div>
 </div>
+
+<% if @product %>
+    <%= render :partial => 'partials/infinite', :locals => {:segment => business_product_reviews_path(@business, @product),
+    :container => '#infinitereviews'} %>
+<% else %>
+    <%= render :partial => 'partials/infinite', :locals => {:segment => business_reviews_path(@business),
+        :container => '#infinitereviews'} %>
+<% end %>

@@ -63,6 +63,8 @@ en:
     outstock: "Out of Stock"
     confirm_delete: "Are you sure you want to delete this?"
     success_delete: "Successfully deleted record!"
+    for_review: "Pending Removal"
+    report_review: "This review has been submitted to staff for inspection"
 
   time:
     formats:

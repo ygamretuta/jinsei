@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-  attr_accessible :approved, :user_id, :text, :rating, :title
+  attr_accessible :approved, :user_id, :text, :rating, :title, :reported
   belongs_to :reviewable, :polymorphic => true
   belongs_to :user
 
@@ -14,6 +14,7 @@ class Review < ActiveRecord::Base
   validate :rating_less_than_equal_5
 
   scope :approved, where(:approved => true)
+  scope :reported, where(:reported => true)
 
   private
     def rating_less_than_equal_5

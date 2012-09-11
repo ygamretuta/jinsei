@@ -17,6 +17,7 @@ ActiveAdmin.register Review do
       f.input :title
       f.input :text
       f.input :approved, :as => :boolean
+      f.input :reported, :as => :boolean
     end
 
     f.buttons

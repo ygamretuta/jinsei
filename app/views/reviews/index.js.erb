@@ -1,11 +1,11 @@
-<ul class="list-bordered" id="products">
+<ul class="list-bordered" id="infinitereviews">
     <%= render_cell :reviews, :index, {:business=>@business, :product=>@product, :reviews=>@reviews} %>
 </ul>
 
 <% if @product %>
     <%= render :partial => 'partials/infinite', :locals => {:segment => business_product_reviews_path(@business, @product),
-    :container => '#products'} %>
+    :container => '#infinitereviews'} %>
 <% else %>
     <%= render :partial => 'partials/infinite', :locals => {:segment => business_reviews_path(@business),
-        :container => '#products'} %>
+        :container => '#infinitereviews'} %>
 <% end %>

@@ -1,17 +1,21 @@
-<ul>
-    <% @reviews.each do |r| %>
-        <li class="list-bordered row">
-          <div class="span2">
-            <div class="rateit rating" data-rateit-value="<%= r.rating %>" data-rateit-preset="true"
-                           data-rateit-readonly="true"></div>
-            <p>Review by: <%= r.user.username %></p>
-          </div>
+<% @reviews.each do |r| %>
+    <li class="list-bordered row infiniteitem">
+      <div class="span2">
+        <div class="rateit rating" data-rateit-value="<%= r.rating %>" data-rateit-preset="true"
+                       data-rateit-readonly="true"></div>
+        <p>Review by: <%= r.user.username %></p>
 
-          <div class="span6">
-            <h2><%= r.title %></h2>
-            <p><%= l r.created_at, :format => :short %></p>
-            <p><%= r.text %></p>
-          </div>
-        </li>
-    <% end %>
-</ul>
+        <% if current_user and @business.is_owned_by?(current_user) and not r.reported%>
+            <p><%= link_to "Report Review", report_review_path(r) %></p>
+        <% elsif r.reported%>
+            <p><span class="pending_removal"><%= t "app.for_review" %></span></p>
+        <% end %>
+      </div>
+
+      <div class="span6">
+        <h2><%= r.title %></h2>
+        <p><%= l r.created_at, :format => :short %></p>
+        <p><%= r.text %></p>
+      </div>
+    </li>
+<% end %>

@@ -14,10 +14,10 @@ class ReviewsController < ApplicationController
 
     # TODO: Improve this code
     if @product.blank?
-      @reviews = @business.reviews
+      @reviews = @business.reviews.page(params[:page]).per(2)
       @type = 'business'
     else
-      @reviews = @product.reviews
+      @reviews = @product.reviews.page(params[:page]).per(2)
       @type = 'product'
     end
     # ENDTODO
@@ -139,11 +139,11 @@ end
     redirect_to request.referer
   end
 
-  def pending_product
-    @product = Product.find(params[:product_id])
-    @reviews = @product.reviews
-    respond_with(@business, @product, @reviews) do |format|
-      format.html { render :template => 'reviews/pending' }
-    end
+  def report
+    @review = Review.find(params[:id])
+    @review.reported=true
+    @review.save
+    flash[:notice] = t "app.report_review"
+    redirect_to request.referer
   end
 end

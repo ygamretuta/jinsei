@@ -21,6 +21,16 @@
           $('div#loadmoreajaxloader').show();
           $('<div/>').load('<%= segment %>?page='+page + ' .infiniteitem', function(){
               $('<%= container %>').append($(this).html());
+
+              if ($('.rating').length){
+                  $('.rating').each(function(){
+                      // initialize first
+                      $(this).rateit();
+
+                      // then assign value
+                      $(this).rateit('value', $(this).data('rateit-value'));
+                  });
+              }
               $('div#loadmoreajaxloader').hide();
           });
         }
