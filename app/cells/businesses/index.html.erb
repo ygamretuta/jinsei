@@ -1,9 +1,7 @@
 <ul class="list-bordered">
     <% @businesses.each do |b| %>
        <li class="clearfix infiniteitem">
-         <% unless b.photo.blank? %>
           <div class="photo_index_business photo-medium"><%= image_tag(b.photo.medium.url)%></div>
-         <% end %>
 
          <div class="name-and-details">
             <h2><%= link_to b.name, business_name_path(b)  %></h2>
