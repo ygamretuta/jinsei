@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   validates :password, :presence => true
   validates_length_of :password, :in => 6..40
   validates_confirmation_of :password
-  validates_presence_of :password_confirmation
 
   devise :database_authenticatable,
          :registerable,
