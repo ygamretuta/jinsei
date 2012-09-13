@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
       )
 
       user.skip_confirmation!
-      user.create
+      user.save!
     end
 
     user
