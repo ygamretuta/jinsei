@@ -12,4 +12,9 @@
 <h2><%= @catalog.name %></h2>
 <p><%= @catalog.description %></p>
 
-<%= render_cell :products, :index, {:products=>@products} %>
+<ul class="list-bordered" id="products">
+    <%= render_cell :products, :index, {:products=>@products} %>
+</ul>
+
+<%= render :partial => 'partials/infinite', :locals => {:segment => business_catalog_products_path(@business, @catalog),
+                                                        :container => '#products'} %>

@@ -1,5 +1,0 @@
-<ul class="list-bordered" id="products">
-    <%= render_cell :businesses, :index, {:businesses => @businesses} %>
-</ul>
-
-<%= render :partial => 'partials/infinite', :locals => {:segment => businesses_path, :container => '#businesses'} %>

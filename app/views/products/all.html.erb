@@ -4,13 +4,7 @@
         <%= render_cell :categories, :index, {:type => @type, :categories => @categories} %>
     </div>
 
-    <div class="span9">
-        <ul class="list-bordered" id="products">
-            <%= render_cell :products, :index, {:products => @products} %>
-        </ul>
-
-        <div id="loadmoreajaxloader" style="display:none;"><center><img src="<%= asset_path 'preloader.gif' %>" /></center></div>
+    <div class="span9" id="products">
+        <%= render_cell :products, :index, {:products => @products} %>
     </div>
 </div>
-
-<%= render :partial => 'partials/infinite', :locals => {:segment => "products", :container => '#products'} %>

@@ -1,3 +1,5 @@
 <h2><%= @business.name %> Catalogs</h2>
 
-<%= render_cell :catalogs, :index, {:business=>@business, :catalogs=>@catalogs} %>
+<ul class="list-bordered" id="infinitecatalogs">
+    <%= render_cell :catalogs, :index, {:business=>@business, :catalogs=>@catalogs} %>
+</ul>

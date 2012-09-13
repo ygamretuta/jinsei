@@ -1,5 +1,24 @@
-$(function(){
+function applyIAS(){
+    $.ias({
+        container : '.list-bordered',
+        item: '.infiniteitem',
+        pagination: '.pagination',
+        next: '.next_page a',
+        loader: '<%= asset_path 'preloader.gif' %>',
+        history: false,
+        onRenderComplete: function(){
+            $('.rating').each(function(){
+                // initialize first
+                $(this).rateit();
 
+                // then assign value
+                $(this).rateit('value', $(this).data('rateit-value'));
+            });
+        }
+    });
+}
+
+$(function(){
     $.ajaxSetup({
         'beforeSend': function(xhr) {
             xhr.setRequestHeader("Accept",'');
@@ -28,8 +47,14 @@ $(function(){
                 // then assign value
                 $(this).rateit('value', $(this).data('rateit-value'));
             });
+
+            if ($('.pagination').is(':visible')){
+                applyIAS();
+            }
         });
     });
+
+    applyIAS();
 
     // activate jquery best in place inputs
     $('.best_in_place').best_in_place();

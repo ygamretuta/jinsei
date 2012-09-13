@@ -1,3 +1,4 @@
+<ul class="list-bordered">
 <% @reviews.each do |r| %>
     <li class="list-bordered row infiniteitem">
       <div class="span2">
@@ -19,3 +20,6 @@
       </div>
     </li>
 <% end %>
+</ul>
+
+<%= paginate(@reviews) %>

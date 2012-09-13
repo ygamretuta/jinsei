@@ -1,7 +1,6 @@
-<%= paginate @catalogs %>
 <ul class="list-bordered">
-  <% @catalogs.each do |c| %>
-    <li class="clearfix">
+    <% @catalogs.each do |c| %>
+    <li class="clearfix infiniteitem">
       <% if c.products.first %>
         <div class="photo-medium"><%= image_tag(c.products.first.photo.medium.url) %></div>
       <% end %>
@@ -11,7 +10,7 @@
         <p><%= c.description %></p>
       </div>
     </li>
-  <% end %>
+    <% end %>
 </ul>
 
-<%= paginate @catalogs %>
+<%= paginate(@catalogs) %>

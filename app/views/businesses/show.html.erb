@@ -42,27 +42,24 @@
 <div class="row">
   <div class="tabbable span10">
     <ul class="nav nav-tabs" id="tabs_business_show">
-      <li class="active"><%= link_to "All Products", "#all", {"data-toggle"=>"tab", "data-url"=> business_products_path(@business), "data-segment" => 'all'} %></li>
-      <li><%= link_to "Branches", "#all", {"data-toggle"=>"tab", "data-url"=>branches_raw_list_path(@business), "data-segment"=>"all"} %></li>
+      <li class="active"><%= link_to "All Products", "#products", {"data-toggle"=>"tab", "data-url"=> business_products_path(@business), "data-segment" => "products"} %></li>
+      <li><%= link_to "Branches", "#branches", {"data-toggle"=>"tab", "data-url"=>branches_raw_list_path(@business), "data-segment"=>"branches"} %></li>
       <li><%= link_to "Reviews", "#reviews", {'data-toggle'=>'tab', 'data-url'=>business_reviews_path(@business), "data-segment"=>"reviews"} %></li>
       <li><%= link_to "Catalogs", "#catalogs", {'data-toggle'=>'tab', 'data-url'=>catalogs_raw_list_path(@business), "data-segment"=>"catalogs"} %></li>
+
       <% if @catalogs %>
           <% @catalogs.each do |c| %>
           <li>
-            <%= link_to c.name, "#"+c.slug.to_s, {"data-toggle" => "tab", "data-url"=> business_catalog_products_path(@business,c), "data-segment" => c.slug}%>
+            <%= link_to c.name, "#"+c.slug.to_s, {"data-toggle" => "tab", "data-url"=> business_catalog_products_path(@business,c), "data-segment" => "products"}%>
           </li>
           <% end %>
       <% end %>
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane active" id="all">
-        <ul class="list-bordered" id="products">
+      <div class="tab-pane active" id="products">
             <%= render_cell :products, :index, {:business=>@business,:products=>@products} %>
-        </ul>
       </div>
     </div>
   </div>
 </div>
-
-<%= render :partial => 'partials/infinite', :locals => {:segment => business_products_path(@business), :container => '#products'} %>

@@ -17,6 +17,8 @@ class Product < ActiveRecord::Base
 
   before_create :unique_to_business
 
+  scope :approved, where(:approved => true)
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 

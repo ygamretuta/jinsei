@@ -5,10 +5,6 @@
   </div>
 
   <div class="span9">
-    <ul class="list_business list-bordered" id="businesses">
-        <%= render_cell :businesses, :index, {:businesses=>@businesses} %>
-    </ul>
+    <%= render_cell :businesses, :index, {:businesses=>@businesses} %>
   </div>
 </div>
-
-<%= render :partial => "partials/infinite", :locals => {:segment => businesses_path, :container => '#businesses'} %>

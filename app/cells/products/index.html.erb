@@ -1,3 +1,4 @@
+<ul class="list-bordered">
 <% @products.each do |p| %>
     <li class="clearfix infiniteitem">
       <div class="photo-medium"><%= image_tag(p.photo.medium.url) %></div>
@@ -37,3 +38,6 @@
       </div>
     </li>
 <% end %>
+</ul>
+
+<%= paginate(@products) %>
