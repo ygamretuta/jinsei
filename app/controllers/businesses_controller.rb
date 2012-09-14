@@ -11,7 +11,7 @@ class BusinessesController < ApplicationController
   end
 
   def index
-    @categories = Category.all
+    @categories = Category.order(:name)
     @businesses = Business.where(:approved=>true).page(params[:page])
     @type = 'business'
     respond_with(@businesses)

@@ -6,7 +6,8 @@ class Business < ActiveRecord::Base
   validate :register_every_24_hours
 
   mount_uploader :photo, PhotoUploader
-  attr_accessible :name, :description, :photo, :remove_photo, :category_id, :address, :approved, :currency
+  attr_accessible :name, :description, :photo, :remove_photo, :category_id, :address, :approved, :currency,
+      :website, :phone, :mobile
 
   has_many :catalogs, :dependent => :destroy
   has_many :products, :dependent => :destroy

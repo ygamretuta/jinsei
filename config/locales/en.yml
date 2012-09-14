@@ -36,6 +36,12 @@ en:
       business:
         name: "Business Name"
 
+  simple_form:
+    labels:
+      business:
+        phone: "Landline Phone Number"
+        mobile: "Mobile Phone Number"
+
   app:
     product_list_empty: "There are no products for this catalog."
     branches_empty: "This business has no other branches."

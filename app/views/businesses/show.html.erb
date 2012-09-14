@@ -1,5 +1,17 @@
 <h2><%= @business.name %></h2>
 
+<% if @business.website %>
+<p><em class="key">Website: </em><%= link_to @business.website, @business.website, {:target=>'_blank'} %></p>
+<% end %>
+
+<% if @business.phone %>
+<p><em class="key">Phone: </em><%= @business.phone %></p>
+<% end %>
+
+<% if @business.mobile %>
+<p><em class="key">Mobile Phone Number: </em><%= @business.mobile%></p>
+<% end %>
+
 <p><%= @business.description %></p>
 
 <div class="subnav">

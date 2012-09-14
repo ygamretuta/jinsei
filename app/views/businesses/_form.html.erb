@@ -4,8 +4,11 @@
     <%= f.input :name, :input_html => {:class => "span6", :size => 20}, :hint => "Enter Business Name" %>
     <%= f.input :address, :input_html => {:class => "span6"} %>
     <%= f.input :photo, :as => :file %>
-    <%= f.association :category %>
+    <%= f.association :category, :collection => Category.order(:name) %>
     <%= f.input :currency, :as => :select, :collection => all_currencies %>
+    <%= f.input :website %>
+    <%= f.input :phone %>
+    <%= f.input :mobile%>
     <%= f.input :description, :input_html => {:class => 'span6', :rows => 5} %>
 
     <% unless @business.photo.blank? %>
