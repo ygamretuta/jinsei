@@ -6,7 +6,7 @@ Jinsei::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   # Specifies the header that your server uses for sending files
@@ -19,7 +19,7 @@ Jinsei::Application.configure do
   # just comment this out and Rails will serve the files
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
@@ -54,8 +54,8 @@ Jinsei::Application.configure do
       :address => 'smtp.webfaction.com',
       :port => 587,
       :domain => 'jinseiapp.com',
-      :user_name => 'ygamretuta',
-      :password => 'mail_ygamretuta',
+      :user_name => 'jinseiapp',
+      :password => '1sw4396lkmsv',
       :enable_starttls_auto => true
   }
 
