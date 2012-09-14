@@ -3,7 +3,12 @@
   <p class="landing-p"><%= t "app.landing_message" %></p>
 
   <%= form_tag('/search?t=b', {:method => 'get'}) do %>
-      <%= text_field_tag :q, nil, {:class => 'search-query', :placeholder => "Find Products or Businesses", :id=>"landing-search"} %>
+      <div class="input-append">
+        <%= search_field_tag :q, nil, {:class => 'search-query', :placeholder => "Find Products or Businesses", :id=>"landing-search"} %>
+        <button type="submit" class="btn add-on">
+          <i class="icon-search"></i>
+        </button>
+      </div>
   <% end %>
 
   <p id="landing-register"><%= link_to "Want To List Your Business? Sign Up!", register_path, {:class=>"btn btn-primary btn-large landing-button"} %></p>

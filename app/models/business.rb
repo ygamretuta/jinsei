@@ -1,9 +1,12 @@
 class Business < ActiveRecord::Base
+  require 'uri'
+
   validates_presence_of :name
   validates_presence_of :category
   validates_length_of :description, :in => 50..600, :allow_blank => true
   validates_length_of :name, :maximum => 255
   validate :register_every_24_hours
+  validates_format_of :website, :with => URI.regexp(['http', 'https'])
 
   mount_uploader :photo, PhotoUploader
   attr_accessible :name, :description, :photo, :remove_photo, :category_id, :address, :approved, :currency,
