@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   validates :username, :presence=>true, :uniqueness => true
   validates_length_of :username, :in => 6..40
   validates :email, :presence => true, :uniqueness => true
-  validates :password, :presence => true
-  validates_length_of :password, :in => 6..40
+  validate :valid_password
+  validates_length_of :password, :in => 6..40, :allow_nil => true
   validates_confirmation_of :password
 
   devise :database_authenticatable,
@@ -31,6 +31,11 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin user]
 
+  def valid_password
+    if self.provider.blank? and self.password.blank?
+      errors.add(:password, :password_required)
+    end
+  end
   def active_for_authentication?
     super && !self.banned
   end
