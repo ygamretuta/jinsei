@@ -47,6 +47,7 @@ en:
     catalogs_empty: "There are no catalogs available."
     reviewed_product: "You have reviewed this product."
     reviewed_business: "You have reviewed this business"
+    less_than_24: "You can only register businesses every 24 hours"
     price_not_available: "Price is not available"
     call_for_pricing: "Call For Pricing"
     landing_message: "Online presence for your businesses, made easy."
