@@ -66,6 +66,10 @@ en:
     for_review: "Pending Removal"
     report_review: "This review has been submitted to staff for inspection"
 
+    moderate_business: "%{business} has been registered by %{user}"
+    moderate_business_message: "To approve this, go to"
+    create_business: "Your business has been submitted for review! The results will come out in 12 hours or less. Thanks!"
+
   time:
     formats:
       short: "%Y-%m-%d"

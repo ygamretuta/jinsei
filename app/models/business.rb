@@ -6,7 +6,7 @@ class Business < ActiveRecord::Base
   validate :register_every_24_hours
 
   mount_uploader :photo, PhotoUploader
-  attr_accessible :name, :description, :photo, :remove_photo, :category_id, :address, :approved
+  attr_accessible :name, :description, :photo, :remove_photo, :category_id, :address, :approved, :currency
 
   has_many :catalogs, :dependent => :destroy
   has_many :products, :dependent => :destroy
@@ -40,7 +40,6 @@ class Business < ActiveRecord::Base
   end
 
   def assign_user_last_registered
-    self.user.last_business_registered = Time.now
-    self.user.save
+    self.user.update_attribute(:last_business_registered, Time.now)
   end
 end

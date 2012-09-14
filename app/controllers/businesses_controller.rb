@@ -24,8 +24,9 @@ class BusinessesController < ApplicationController
   def create
     @user = current_user
     @business = @user.businesses.create(params[:business])
-    if @business.save
-      flash[:notice] = t("flash.actions.create.notice", {:resource_name => "Business"})
+    if @business.persisted?
+      flash[:notice] = t("app.create_business")
+      ModerationMailer.approve_business(@business.name, @user.username).deliver
       redirect_to user_businesses_path
     else
       respond_with(@business)
@@ -63,7 +64,7 @@ class BusinessesController < ApplicationController
       @business.destroy
     end
 
-    redirect_to root_path
+    redirect_to user_businesses_path
   end
 
   def category
