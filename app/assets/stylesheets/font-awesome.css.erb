@@ -23,8 +23,10 @@
     */
 @font-face {
   font-family: "FontAwesome";
-  src: url('../fontawesome-webfont.eot');
-  src: url('../fontawesome-webfont.eot?#iefix') format('eot'), url(<%= asset_path 'fontawesome-webfont.woff' %>) format('woff'), url(<%= asset_path 'fontawesome-webfont.ttf' %>) format('truetype'), url('../font/fontawesome-webfont.svg#FontAwesome') format('svg');
+  src: url(<%= asset_path 'fontawesome-webfont.eot?#iefix'%>) format('eot'),
+    url(<%= asset_path 'fontawesome-webfont.woff' %>) format('woff'),
+    url(<%= asset_path 'fontawesome-webfont.ttf' %>) format('truetype'),
+    url(<%= asset_path 'fontawesome-webfont.svg#FontAwesome'%>) format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -41,6 +43,10 @@
 a [class^="icon-"], a [class*=" icon-"] {
   display: inline-block;
   text-decoration: inherit;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    background-image:none;
 }
 /* makes the font 33% larger relative to the icon container */
 .icon-large:before {
