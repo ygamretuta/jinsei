@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="container">
+<div id="wrapper" class="container">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -52,6 +52,7 @@
                 </li>
             <% end %>
           </ul>
+
 
           <%= form_tag('/search?t=b', {:method => 'get', :class => 'navbar-search pull-right'}) do %>
             <%= text_field_tag :q, nil, {:class => 'search-query', :placeholder => "Search"} %>

@@ -4,7 +4,7 @@
 
   <%= form_tag('/search?t=b', {:method => 'get'}) do %>
       <div class="input-append">
-        <%= search_field_tag :q, nil, {:class => 'search-query', :placeholder => "Find Products or Businesses", :id=>"landing-search"} %>
+        <%= search_field_tag :q, nil, {:placeholder => "Find Products or Businesses", :id=>"landing-search"} %>
         <button type="submit" class="btn add-on">
           <i class="icon-search"></i>
         </button>

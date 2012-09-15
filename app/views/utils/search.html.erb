@@ -27,7 +27,7 @@
                 <ul class="list-bordered">
                   <% @businesses.each do |b| %>
                     <li>
-                      <h3><%= link_to b.name, business_path(b) %></h3>
+                      <h2><%= link_to b.name, business_path(b) %></h2>
                       <p><%= b.address %></p>
                     </li>
                   <% end %>
