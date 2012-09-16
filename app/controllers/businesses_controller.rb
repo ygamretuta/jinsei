@@ -69,7 +69,7 @@ class BusinessesController < ApplicationController
 
   def category
     @type = 'business'
-    @categories = Category.all
+    @categories = Category.order(:name)
     @category = Category.find(params[:category_id])
     @businesses = @category.businesses.page params[:page]
   end

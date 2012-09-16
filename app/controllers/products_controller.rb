@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
   def category
     @type = 'product'
     @category = Category.find(params[:category_id])
-    @categories = Category.all
+    @categories = Category.order(:name)
     collection = @category.products.includes(:business).where('businesses.approved = ?', true).all
     @products = Kaminari.paginate_array(collection).page(params[:page])
   end
