@@ -75,6 +75,7 @@ en:
     success_delete: "Successfully deleted record!"
     for_review: "Pending Removal"
     report_review: "This review has been submitted to staff for inspection"
+    default_title: "The Easy Way to Bring Your Business Online"
 
     moderate_business: "%{business} has been registered by %{user}"
     moderate_business_message: "To approve this, go to"
