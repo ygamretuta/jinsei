@@ -1,14 +1,20 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
-gem 'mysql2'
-gem 'capistrano'
-gem 'simple_form'
-gem 'carrierwave'
+gem 'rails', '4.0.0'
+gem 'turbolinks'
+gem 'jbuilder', '~> 1.2'
+gem 'sass-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+
+gem 'protected_attributes'
+gem 'mysql2'
+gem 'simple_form', '~>3.0.0.rc'
+gem 'carrierwave'
 gem 'mini_magick'
 gem 'devise'
-gem 'friendly_id'
+gem 'friendly_id', github: 'norman/friendly_id'
 gem 'cells'
 gem 'cancan'
 gem 'omniauth'
@@ -16,38 +22,22 @@ gem 'omniauth-facebook'
 gem 'oauth2'
 gem 'thin'
 gem 'kaminari'
-gem 'best_in_place'
+gem 'best_in_place', github: "bernat/best_in_place"
 gem 'squeel'
-gem 'pjax_rails'
-gem 'activeadmin'
-gem 'letter_opener', :group => :development
-gem 'sass-rails', '~> 3.2.3'
 gem 'bootstrap-sass'
 gem 'money-rails'
-gem 'activeadmin-cancan'
+gem 'sqlite3'
+gem 'jquery-ui-rails'
+gem 'debugger'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-group :assets do
-  gem 'uglifier'
-  gem 'coffee-rails', '~> 3.2.1'
+group :development do
+  gem 'capistrano'
+  gem 'letter_opener'
 end
 
 group :production do
   gem 'redis-rails'
   gem 'yui-compressor'
   gem 'closure-compiler'
-end
-
-group :test, :development do
-  gem 'ruby-debug19'
-  gem 'rspec-rails'
-  gem 'spork', '~> 0.9'
-  gem 'rb-fsevent'
-  gem 'growl'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'factory_girl_rails', :require => false
+  gem 'therubyracer'
 end

@@ -66,4 +66,7 @@ Jinsei::Application.configure do
   config.assets.css_compressor = :yui
 
   config.assets.js_compressor = :closure
+
+  # Do not eager load code on boot.
+    config.eager_load = true
 end

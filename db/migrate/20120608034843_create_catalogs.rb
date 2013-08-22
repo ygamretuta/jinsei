@@ -8,7 +8,7 @@ class CreateCatalogs < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :catalogs, :business_id, slug: :unique
+    add_index :catalogs, :slug, :unique => true
   end
 
   def down

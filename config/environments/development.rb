@@ -1,6 +1,5 @@
 Jinsei::Application.configure do
   config.cache_classes = false
-  config.whiny_nils = true
   config.consider_all_requests_local       = true
   # config.action_view.debug_rjs             = false
   # config.action_controller.perform_caching = false
@@ -11,4 +10,7 @@ Jinsei::Application.configure do
   config.action_mailer.delivery_method = :letter_opener
   # OmniAuth.config.test_mode = true
   config.logger = Logger.new(STDOUT)
+  config.active_record.migration_error = :page_load
+  # Do not eager load code on boot.
+  config.eager_load = false
 end

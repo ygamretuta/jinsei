@@ -9,158 +9,111 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120914222414) do
+ActiveRecord::Schema.define(version: 20120914222414) do
 
-  create_table "active_admin_comments", :force => true do |t|
-    t.string   "resource_id",   :null => false
-    t.string   "resource_type", :null => false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.text     "body"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "namespace"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
-
-  create_table "admin_users", :force => true do |t|
-    t.string   "email",                  :default => "",      :null => false
-    t.string   "encrypted_password",     :default => "",      :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.string   "role",                   :default => "staff"
-  end
-
-  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
-  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
-
-  create_table "branches", :force => true do |t|
+  create_table "branches", force: true do |t|
     t.string   "location"
     t.integer  "business_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "mobile"
     t.string   "phone"
   end
 
-  create_table "businesses", :force => true do |t|
+  create_table "businesses", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "photo"
     t.text     "description"
     t.string   "slug"
     t.integer  "user_id"
-    t.boolean  "approved",    :default => false
-    t.string   "address",     :default => ""
+    t.boolean  "approved",    default: false
+    t.string   "address",     default: ""
     t.integer  "category_id"
-    t.string   "currency",    :default => "PHP"
+    t.string   "currency",    default: "PHP"
     t.string   "website"
     t.string   "phone"
     t.string   "mobile"
   end
 
-  add_index "businesses", ["slug"], :name => "index_businesses_on_slug", :unique => true
+  add_index "businesses", ["slug"], name: "index_businesses_on_slug", unique: true
 
-  create_table "catalogs", :force => true do |t|
+  create_table "catalogs", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "business_id"
     t.string   "slug"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "catalogs", ["business_id"], :name => "index_catalogs_on_business_id"
+  add_index "catalogs", ["slug"], name: "index_catalogs_on_slug", unique: true
 
-  create_table "categories", :force => true do |t|
+  create_table "categories", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.string   "slug"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "categories", ["slug"], :name => "categories_slug_unique", :unique => true
+  add_index "categories", ["slug"], name: "categories_slug_unique", unique: true
 
-  create_table "features", :force => true do |t|
+  create_table "features", force: true do |t|
     t.integer  "product_id"
     t.text     "feature"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "products", :force => true do |t|
+  create_table "products", force: true do |t|
     t.string   "name"
-    t.text     "description"
+    t.text     "description",      limit: 255
     t.integer  "business_id"
-    t.datetime "created_at",                                                         :null => false
-    t.datetime "updated_at",                                                         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "slug"
     t.string   "photo"
     t.integer  "catalog_id"
-    t.boolean  "in_stock",                                        :default => true
-    t.decimal  "price",            :precision => 10, :scale => 2
+    t.boolean  "in_stock",                                              default: true
+    t.decimal  "price",                        precision: 10, scale: 2
     t.integer  "category_id"
-    t.boolean  "call_for_pricing",                                :default => false
+    t.boolean  "call_for_pricing",                                      default: false
   end
 
-  add_index "products", ["business_id"], :name => "index_products_on_business_id"
-  add_index "products", ["catalog_id"], :name => "index_products_on_catalog_id"
-  add_index "products", ["slug"], :name => "index_products_on_slug", :unique => true
+  add_index "products", ["business_id"], name: "index_products_on_business_id"
+  add_index "products", ["catalog_id"], name: "index_products_on_catalog_id"
+  add_index "products", ["slug"], name: "index_products_on_slug", unique: true
 
-  create_table "rates", :force => true do |t|
-    t.integer  "rater_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.integer  "stars",         :null => false
-    t.string   "dimension"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
-  add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
-
-  create_table "reviews", :force => true do |t|
+  create_table "reviews", force: true do |t|
     t.integer  "user_id"
-    t.boolean  "approved",        :default => false
+    t.boolean  "approved",        default: false
     t.integer  "rating"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "text"
-    t.string   "title"
+    t.string   "title",           default: "0"
     t.integer  "reviewable_id"
     t.string   "reviewable_type"
-    t.boolean  "reported",        :default => false
+    t.boolean  "reported",        default: false
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                    :default => "",    :null => false
-    t.string   "encrypted_password",       :default => "",    :null => false
+  create_table "users", force: true do |t|
+    t.string   "email",                    default: "",    null: false
+    t.string   "encrypted_password",       default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",            :default => 0
+    t.integer  "sign_in_count",            default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "role"
     t.string   "username"
     t.string   "provider"
@@ -169,12 +122,12 @@ ActiveRecord::Schema.define(:version => 20120914222414) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.boolean  "banned",                   :default => false
+    t.boolean  "banned",                   default: false
     t.datetime "last_business_registered"
   end
 
-  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
