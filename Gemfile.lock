@@ -1,17 +1,17 @@
 GIT
-  remote: git://github.com/bernat/best_in_place.git
-  revision: df178520bf9ba405baee9528d5dbb630d6ff760c
+  remote: https://github.com/bernat/best_in_place.git
+  revision: a3560e874444af8b2cf78419dc5eef020626c93c
   specs:
-    best_in_place (2.1.0)
-      jquery-rails
-      rails (>= 3.1)
+    best_in_place (3.1.1)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
 
 GIT
-  remote: git://github.com/norman/friendly_id.git
-  revision: 4c8197c30e495b3d6249f191a03dcc3224db7e4b
+  remote: https://github.com/norman/friendly_id.git
+  revision: a33d246a712a3ffcda15a17adff8c2fdd358a4c7
   specs:
-    friendly_id (5.0.0.beta4)
-      activerecord (~> 4.0.0)
+    friendly_id (6.0.0)
+      activerecord (>= 4.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -91,7 +91,7 @@ GEM
     highline (1.6.19)
     hike (1.2.3)
     httpauth (0.2.0)
-    i18n (0.6.5)
+    i18n (0.6.11)
     jbuilder (1.5.0)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
